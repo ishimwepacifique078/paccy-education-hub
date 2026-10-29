@@ -1,0 +1,520 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paccy Education Hub</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f5ff;
+            color: #222;
+        }
+
+        header {
+            background: linear-gradient(135deg, #071952, #088395);
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        header h1 {
+            font-size: 48px;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        header p {
+            font-size: 20px;
+            margin: 10px;
+        }
+
+        .creator {
+            font-size: 17px;
+            font-style: italic;
+            margin-top: 25px;
+        }
+
+        nav {
+            background: #071952;
+            padding: 16px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 12px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #35e0d0;
+        }
+
+        .welcome {
+            text-align: center;
+            padding: 45px 20px;
+        }
+
+        .welcome h2 {
+            color: #071952;
+            font-size: 30px;
+            margin-bottom: 15px;
+        }
+
+        .welcome p {
+            max-width: 750px;
+            margin: auto;
+            line-height: 1.8;
+            font-size: 17px;
+        }
+
+        .subjects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 22px;
+            padding: 25px;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 12px #00000015;
+        }
+
+        .card h3 {
+            color: #088395;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            line-height: 1.6;
+            margin-bottom: 18px;
+        }
+
+        .card a {
+            display: inline-block;
+            background: #088395;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 6px;
+            text-decoration: none;
+        }
+
+        .card a:hover {
+            background: #071952;
+        }
+
+        .about {
+            text-align: center;
+            padding: 40px 20px;
+            background: #dff6ff;
+            margin-top: 30px;
+        }
+
+        .about h2 {
+            color: #071952;
+            margin-bottom: 15px;
+        }
+
+        footer {
+            background: #071952;
+            color: white;
+            text-align: center;
+            padding: 22px;
+            line-height: 1.8;
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 32px;
+            }
+
+            nav a {
+                display: inline-block;
+                margin: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header id="home">
+        <h1>PACCY EDUCATION HUB</h1>
+        <p>Learn Today, Lead Tomorrow!</p>
+        <p>Your Gateway to Knowledge and Skills</p>
+        <div class="creator">Created by Pacifique</div>
+    </header>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#subjects">Subjects</a>
+        <a href="#about">About Us</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <section class="welcome">
+        <h2>Welcome to Paccy Education Hub</h2>
+        <p>
+            Welcome to a world of learning! This website is designed
+            to help students improve their knowledge, develop useful
+            skills, and achieve academic success. Explore educational
+            notes, computer skills, creative arts, science, English,
+            and many other learning opportunities.
+        </p>
+    </section>
+
+    <section class="subjects" id="subjects">
+
+        <div class="card">
+            <h3>📘 English</h3>
+            <p>Improve your grammar, vocabulary, writing, and communication.</p>
+            <a href="https://www.bbc.co.uk/learningenglish"
+               target="_blank" rel="noopener noreferrer">Learn English</a>
+        </div>
+
+        <div class="card">
+            <h3>💻 Computer Skills</h3>
+            <p>Discover computer basics, Microsoft Office, Excel, and web design.</p>
+            <a href="https://edu.gcfglobal.org/en/"
+               target="_blank" rel="noopener noreferrer">Start Learning</a>
+        </div>
+
+        <div class="card">
+            <h3>🔬 Science</h3>
+            <p>Explore scientific ideas, experiments, and the world around us.</p>
+            <a href="https://www.khanacademy.org/science"
+               target="_blank" rel="noopener noreferrer">Study Science</a>
+        </div>
+
+        <div class="card">
+            <h3>🎨 Creative Arts</h3>
+            <p>Develop your creativity through patterns, drawing, music, and design.</p>
+            <a href="https://www.khanacademy.org/"
+               target="_blank" rel="noopener noreferrer">Explore Learning</a>
+        </div>
+
+    </section>
+
+    <section class="about" id="about">
+        <h2>About Paccy Education Hub</h2>
+        <p>
+            Paccy Education Hub is an educational platform created by
+            Pacifique to share knowledge, support learners, and encourage
+            lifelong learning through technology.
+        </p>
+    </section>
+
+    <footer id="contact">
+        <p><strong>PACCY EDUCATION HUB</strong></p>
+        <p>Created by Pacifique</p>
+        <p>Education is the key to a brighter future.</p>
+        <p>&copy; 2026 Paccy Education Hub. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses | Paccy Education Hub</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f0f5ff;
+            color: #222;
+        }
+
+        header {
+            background: linear-gradient(135deg, #071952, #088395);
+            color: white;
+            text-align: center;
+            padding: 35px 15px;
+        }
+
+        header h1 {
+            font-size: 38px;
+        }
+
+        nav {
+            background: #071952;
+            text-align: center;
+            padding: 15px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 12px;
+        }
+
+        .intro {
+            text-align: center;
+            padding: 25px;
+        }
+
+        .courses {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 22px;
+            max-width: 1100px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .course {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px #00000015;
+            border-top: 5px solid #088395;
+        }
+
+        .course h2 {
+            color: #071952;
+        }
+
+        .level {
+            color: #088395;
+            font-weight: bold;
+        }
+
+        .course button {
+            background: #088395;
+            color: white;
+            border: none;
+            padding: 12px 18px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .course button:hover {
+            background: #071952;
+        }
+
+        #lesson {
+            display: none;
+            max-width: 850px;
+            margin: 25px auto;
+            padding: 25px;
+            background: white;
+            border-radius: 12px;
+            line-height: 1.7;
+        }
+
+        footer {
+            background: #071952;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>PACCY EDUCATION HUB</h1>
+    <p>Discover Courses. Develop Skills. Build Your Future.</p>
+    <p>Created by Pacifique</p>
+</header>
+
+<nav>
+    <a href="index.html">Home</a>
+    <a href="#courses">Courses</a>
+    <a href="#lesson">Lessons</a>
+</nav>
+
+<section class="intro">
+    <h2>Our Courses</h2>
+    <p>Choose a course and begin your learning journey!</p>
+</section>
+
+<section class="courses" id="courses">
+
+    <div class="course">
+        <h2>💻 Advanced Excel</h2>
+        <p>Learn formulas, functions, charts, data analysis, and PivotTables.</p>
+        <p class="level">Level: Beginner to Advanced</p>
+        <button onclick="openLesson('excel')">Start Course</button>
+    </div>
+
+    <div class="course">
+        <h2>🌐 Web Design</h2>
+        <p>Learn HTML, CSS, and how to build your own website.</p>
+        <p class="level">Level: Beginner</p>
+        <button onclick="openLesson('web')">Start Course</button>
+    </div>
+
+    <div class="course">
+        <h2>📝 English</h2>
+        <p>Improve grammar, vocabulary, reading, and writing skills.</p>
+        <p class="level">Level: Beginner to Intermediate</p>
+        <button onclick="openLesson('english')">Start Course</button>
+    </div>
+
+    <div class="course">
+        <h2>🔬 Science</h2>
+        <p>Explore chemistry, biology, physics, and scientific thinking.</p>
+        <p class="level">Level: School Learners</p>
+        <button onclick="openLesson('science')">Start Course</button>
+    </div>
+
+    <div class="course">
+        <h2>📊 Digital Skills</h2>
+        <p>Learn computer basics, internet use, and digital productivity.</p>
+        <p class="level">Level: Beginner</p>
+        <button onclick="openLesson('digital')">Start Course</button>
+    </div>
+
+    <div class="course">
+        <h2>🎨 Creative Arts</h2>
+        <p>Discover patterns, drawing, music, design, and creativity.</p>
+        <p class="level">Level: Beginner</p>
+        <button onclick="openLesson('arts')">Start Course</button>
+    </div>
+
+</section>
+
+<section id="lesson">
+    <h2 id="lessonTitle">Course Lesson</h2>
+    <div id="lessonContent"></div>
+    <button onclick="closeLesson()">Back to Courses</button>
+</section>
+
+<script>
+    const lessons = {
+        excel: {
+            title: "Advanced Excel - Lesson 1",
+            content: `
+                <h3>Introduction to Microsoft Excel</h3>
+                <p>Microsoft Excel is a spreadsheet program used to
+                organize, calculate, and analyze information.</p>
+                <h3>Important concepts</h3>
+                <ul>
+                    <li>Workbook: an Excel file.</li>
+                    <li>Worksheet: a spreadsheet inside a workbook.</li>
+                    <li>Cell: a box where a row and column meet.</li>
+                    <li>Formula: an expression used for calculations.</li>
+                </ul>
+                <p>Example: type =SUM(A1:A5) to add values in cells A1 to A5.</p>
+            `
+        },
+
+        web: {
+            title: "Web Design - Lesson 1",
+            content: `
+                <h3>Introduction to HTML</h3>
+                <p>HTML defines the structure of a web page.</p>
+                <p>Example: &lt;h1&gt;Hello World&lt;/h1&gt;</p>
+                <p>CSS controls appearance, including colors, spacing,
+                and fonts. JavaScript adds interactive behavior.</p>
+            `
+        },
+
+        english: {
+            title: "English - Lesson 1",
+            content: `
+                <h3>Parts of Speech</h3>
+                <ul>
+                    <li>Noun: names a person, place, or thing.</li>
+                    <li>Verb: expresses an action or state.</li>
+                    <li>Adjective: describes a noun.</li>
+                    <li>Adverb: modifies a verb, adjective, or another adverb.</li>
+                </ul>
+                <p>Exercise: Identify the verb in this sentence:
+                "Students learn every day."</p>
+            `
+        },
+
+        science: {
+            title: "Science - Lesson 1",
+            content: `
+                <h3>Introduction to Science</h3>
+                <p>Science is the systematic study of the natural world
+                through observation, evidence, and experimentation.</p>
+                <p>Scientific work often involves asking questions,
+                forming hypotheses, testing ideas, and analyzing results.</p>
+            `
+        },
+
+        digital: {
+            title: "Digital Skills - Lesson 1",
+            content: `
+                <h3>Computer Basics</h3>
+                <ul>
+                    <li>Hardware: physical parts of a computer.</li>
+                    <li>Software: programs used by a computer.</li>
+                    <li>Keyboard: used to enter text and commands.</li>
+                    <li>Browser: software used to visit websites.</li>
+                </ul>
+            `
+        },
+
+        arts: {
+            title: "Creative Arts - Lesson 1",
+            content: `
+                <h3>Introduction to Patterns</h3>
+                <p>A pattern is a repeated arrangement of shapes,
+                lines, colors, sounds, or other elements.</p>
+                <p>Examples include stripes, repeated circles,
+                geometric designs, and rhythmic patterns in music.</p>
+            `
+        }
+    };
+
+    function openLesson(course) {
+        document.getElementById("lessonTitle").textContent =
+            lessons[course].title;
+
+        document.getElementById("lessonContent").innerHTML =
+            lessons[course].content;
+
+        document.getElementById("lesson").style.display = "block";
+        document.getElementById("lesson").scrollIntoView({
+            behavior: "smooth"
+        });
+    }
+
+    function closeLesson() {
+        document.getElementById("lesson").style.display = "none";
+        document.getElementById("courses").scrollIntoView({
+            behavior: "smooth"
+        });
+    }
+</script>
+
+<footer>
+    <p><strong>Paccy Education Hub</strong></p>
+    <p>Created by Pacifique | Learn Today, Lead Tomorrow!</p>
+    <p>&copy; 2026 Paccy Education Hub</p>
+</footer>
+
+</body>
+</html>
