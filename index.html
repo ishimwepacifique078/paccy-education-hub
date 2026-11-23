@@ -288,3 +288,293 @@ renderCourses();
 </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Paccy Education Hub</title>
+<style>
+:root{
+  --bg:#f0f5ff;--surface:#fff;--text:#1d2433;--muted:#566077;
+  --navy:#071952;--teal:#088395;--accent:#35e0d0;--soft:#dff6ff;--ok:#1a9d5a;--bad:#d64545;
+  --shadow:0 4px 14px #00000018;color-scheme:light;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--bg:#0b1220;--surface:#141d33;--text:#e8edf8;--muted:#9aa6c0;--navy:#0a1a4a;--soft:#12233f;--shadow:0 4px 14px #00000060;color-scheme:dark}
+}
+:root[data-theme="dark"]{--bg:#0b1220;--surface:#141d33;--text:#e8edf8;--muted:#9aa6c0;--navy:#0a1a4a;--soft:#12233f;--shadow:0 4px 14px #00000060;color-scheme:dark}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+
+/* Header */
+#home{background:linear-gradient(135deg,#071952,#088395);color:#fff;display:flex;align-items:center;gap:40px;padding:50px 60px}
+.avatar{position:relative;overflow:hidden;width:150px;height:150px;flex:none;border-radius:50%;border:4px solid #fff;background:#0b2a6b;display:grid;place-items:center;font-size:64px;font-weight:bold;box-shadow:0 6px 18px #00000050}
+.avatar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top}
+.header-text{flex:1;text-align:center}
+.header-text h1{font-size:44px;letter-spacing:2px;margin-bottom:10px}
+.header-text p{font-size:19px;margin:6px 0}
+.creator{font-style:italic;margin-top:16px}
+
+/* Nav */
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--navy);display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:6px;padding:10px}
+nav a{color:#fff;text-decoration:none;font-weight:bold;padding:8px 14px;border-radius:6px}
+nav a:hover{color:var(--accent)}
+.icon-btn{background:transparent;border:1px solid #ffffff55;color:#fff;border-radius:6px;padding:7px 12px;cursor:pointer;font-size:15px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--navy);z-index:30}
+
+/* Sections */
+section{max-width:1100px;margin:auto;padding:36px 20px}
+h2.title{color:var(--navy);font-size:28px;text-align:center;margin-bottom:10px}
+:root[data-theme="dark"] h2.title{color:var(--accent)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) h2.title{color:var(--accent)}}
+.lead{text-align:center;max-width:720px;margin:0 auto 20px;color:var(--muted)}
+
+/* Progress dashboard */
+.dash{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px}
+.stat{background:var(--surface);border-radius:12px;padding:18px;text-align:center;box-shadow:var(--shadow)}
+.stat b{display:block;font-size:30px;color:var(--teal)}
+.bar{height:10px;background:var(--soft);border-radius:99px;overflow:hidden;margin-top:14px}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--teal),var(--accent));transition:width .5s}
+
+/* Tools */
+.tools{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:20px}
+.tools input{flex:1 1 240px;max-width:380px;padding:11px 14px;border-radius:8px;border:1px solid var(--muted);background:var(--surface);color:var(--text);font-size:16px}
+.chip{border:1px solid var(--teal);background:var(--surface);color:var(--teal);padding:9px 14px;border-radius:99px;cursor:pointer;font-weight:bold}
+.chip.on{background:var(--teal);color:#fff}
+
+/* Cards */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.card{background:var(--surface);border-radius:12px;padding:22px;box-shadow:var(--shadow);border-top:5px solid var(--teal);display:flex;flex-direction:column;gap:8px;position:relative}
+.card h3{color:var(--teal)}
+.level{font-size:14px;font-weight:bold;color:var(--muted)}
+.badge{position:absolute;top:10px;right:12px;background:var(--ok);color:#fff;font-size:12px;padding:2px 9px;border-radius:99px}
+button.main{margin-top:auto;background:var(--teal);color:#fff;border:0;border-radius:6px;padding:11px 16px;cursor:pointer;font-size:15px}
+button.main:hover{background:var(--navy)}
+button.ghost{background:transparent;color:var(--teal);border:1px solid var(--teal);border-radius:6px;padding:10px 16px;cursor:pointer}
+.empty{text-align:center;color:var(--muted);padding:20px;display:none}
+
+/* Lesson panel */
+#lesson{display:none;background:var(--surface);border-radius:14px;box-shadow:var(--shadow);margin:10px auto 30px;max-width:850px}
+#lesson h3{margin:14px 0 6px;color:var(--teal)}
+#lesson ul{margin-left:22px}
+.quiz{margin-top:22px;padding:16px;background:var(--soft);border-radius:10px}
+.opt{display:block;width:100%;text-align:left;margin-top:8px;padding:10px 12px;border-radius:8px;border:1px solid var(--muted);background:var(--surface);color:var(--text);cursor:pointer;font-size:15px}
+.opt.right{border-color:var(--ok);background:#1a9d5a30}
+.opt.wrong{border-color:var(--bad);background:#d6454530}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+
+/* Daily tip */
+.tip{background:var(--soft);border-left:5px solid var(--teal);border-radius:10px;padding:18px;max-width:760px;margin:auto}
+
+.about{background:var(--soft);text-align:center;max-width:none}
+.about p{max-width:720px;margin:auto}
+footer{background:var(--navy);color:#fff;text-align:center;padding:22px;line-height:1.8}
+
+@media (max-width:700px){
+  #home{flex-direction:column;padding:30px 20px;gap:20px}
+  .header-text h1{font-size:30px}
+}
+</style>
+</head>
+<body>
+
+<header id="home">
+  <div class="avatar" aria-label="Pacifique">
+    <img src="paccy.png" alt="Pacifique, creator of Paccy Education Hub" onerror="this.remove()">P
+  </div>
+  <div class="header-text">
+    <h1>PACCY EDUCATION HUB</h1>
+    <p>Learn Today, Lead Tomorrow!</p>
+    <p>Your Gateway to Knowledge and Skills</p>
+    <div class="creator">Created by Pacifique</div>
+  </div>
+</header>
+
+<nav>
+  <a href="#home">Home</a>
+  <a href="#progress">Progress</a>
+  <a href="#courses">Courses</a>
+  <a href="#about">About</a>
+  <a href="#contact">Contact</a>
+  <button class="icon-btn" id="themeBtn" type="button" aria-label="Toggle dark mode">🌙</button>
+</nav>
+
+<section id="progress">
+  <h2 class="title">Your Learning Journey</h2>
+  <p class="lead">Finish lessons and pass the quick quizzes to earn badges. Your progress is saved on this device.</p>
+  <div class="dash">
+    <div class="stat"><b id="sDone">0</b>Courses completed</div>
+    <div class="stat"><b id="sScore">0</b>Quiz points</div>
+    <div class="stat"><b id="sPct">0%</b>Overall progress<div class="bar"><i id="barFill"></i></div></div>
+  </div>
+</section>
+
+<section>
+  <div class="tip"><strong>💡 Tip of the day:</strong> <span id="tipText"></span></div>
+</section>
+
+<section id="courses">
+  <h2 class="title">Our Courses</h2>
+  <p class="lead">Search or filter, then choose a course to begin.</p>
+  <div class="tools">
+    <input id="search" type="search" placeholder="Search courses…" aria-label="Search courses">
+    <button class="chip on" data-cat="all" type="button">All</button>
+    <button class="chip" data-cat="tech" type="button">Tech</button>
+    <button class="chip" data-cat="school" type="button">School</button>
+    <button class="chip" data-cat="creative" type="button">Creative</button>
+  </div>
+  <div class="grid" id="grid"></div>
+  <p class="empty" id="empty">No courses match your search.</p>
+</section>
+
+<section id="lesson" aria-live="polite">
+  <h2 id="lTitle" class="title" style="text-align:left"></h2>
+  <div id="lBody"></div>
+  <div class="quiz">
+    <strong>Quick quiz</strong>
+    <p id="qText" style="margin-top:6px"></p>
+    <div id="qOpts"></div>
+    <p id="qMsg" style="margin-top:10px;font-weight:bold"></p>
+  </div>
+  <div class="actions">
+    <button class="main" id="doneBtn" type="button" style="margin-top:0">Mark as complete</button>
+    <button class="ghost" id="closeBtn" type="button">Back to courses</button>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <h2 class="title">About Paccy Education Hub</h2>
+  <p>Paccy Education Hub is an educational platform created by Pacifique to share knowledge, support learners, and encourage lifelong learning through technology.</p>
+</section>
+
+<footer id="contact">
+  <p><strong>PACCY EDUCATION HUB</strong></p>
+  <p>Created by Pacifique</p>
+  <p>Education is the key to a brighter future.</p>
+  <p>© 2026 Paccy Education Hub. All rights reserved.</p>
+</footer>
+
+<script>
+/* ---------- Data ---------- */
+const COURSES = [
+  {id:"excel",cat:"tech",icon:"💻",name:"Advanced Excel",desc:"Formulas, functions, charts, data analysis, and PivotTables.",level:"Beginner to Advanced",
+   lesson:"<h3>Introduction to Microsoft Excel</h3><p>Excel is a spreadsheet program used to organize, calculate, and analyze information.</p><h3>Key concepts</h3><ul><li>Workbook: an Excel file.</li><li>Worksheet: a sheet inside a workbook.</li><li>Cell: where a row and column meet.</li><li>Formula: an expression used for calculations.</li></ul><p>Example: type <code>=SUM(A1:A5)</code> to add the values in cells A1 to A5.</p>",
+   q:{t:"Which formula adds cells A1 to A5?",o:["=ADD(A1:A5)","=SUM(A1:A5)","=TOTAL(A1,A5)"],a:1}},
+  {id:"web",cat:"tech",icon:"🌐",name:"Web Design",desc:"Learn HTML, CSS, and how to build your own website.",level:"Beginner",
+   lesson:"<h3>Introduction to HTML</h3><p>HTML defines the structure of a web page, for example <code>&lt;h1&gt;Hello World&lt;/h1&gt;</code>.</p><p>CSS controls appearance: colors, spacing, and fonts. JavaScript adds interactive behavior.</p>",
+   q:{t:"Which language controls the look of a web page?",o:["HTML","CSS","SQL"],a:1}},
+  {id:"digital",cat:"tech",icon:"📊",name:"Digital Skills",desc:"Computer basics, internet use, and digital productivity.",level:"Beginner",
+   lesson:"<h3>Computer Basics</h3><ul><li>Hardware: the physical parts of a computer.</li><li>Software: the programs a computer runs.</li><li>Keyboard: enters text and commands.</li><li>Browser: software used to visit websites.</li></ul>",
+   q:{t:"Which of these is software?",o:["Keyboard","Monitor","Browser"],a:2}},
+  {id:"english",cat:"school",icon:"📝",name:"English",desc:"Improve grammar, vocabulary, reading, and writing.",level:"Beginner to Intermediate",
+   lesson:"<h3>Parts of Speech</h3><ul><li>Noun: names a person, place, or thing.</li><li>Verb: expresses an action or state.</li><li>Adjective: describes a noun.</li><li>Adverb: modifies a verb, adjective, or another adverb.</li></ul><p>Exercise: find the verb in “Students learn every day.”</p>",
+   q:{t:"What is the verb in “Students learn every day”?",o:["Students","learn","day"],a:1}},
+  {id:"science",cat:"school",icon:"🔬",name:"Science",desc:"Chemistry, biology, physics, and scientific thinking.",level:"School Learners",
+   lesson:"<h3>Introduction to Science</h3><p>Science is the systematic study of the natural world through observation, evidence, and experimentation.</p><p>Scientists ask questions, form hypotheses, test ideas, and analyze results.</p>",
+   q:{t:"What is a hypothesis?",o:["A testable explanation","A final proof","A lab tool"],a:0}},
+  {id:"arts",cat:"creative",icon:"🎨",name:"Creative Arts",desc:"Patterns, drawing, music, design, and creativity.",level:"Beginner",
+   lesson:"<h3>Introduction to Patterns</h3><p>A pattern is a repeated arrangement of shapes, lines, colors, sounds, or other elements.</p><p>Examples: stripes, repeated circles, geometric designs, and rhythm in music.</p>",
+   q:{t:"Which is an example of a pattern?",o:["One red dot","Repeating stripes","A blank page"],a:1}}
+];
+const TIPS = [
+  "Study in short bursts of 25 minutes, then rest for 5.",
+  "Teach what you learned to a friend. It is the fastest way to remember it.",
+  "Type formulas yourself in Excel instead of copying them.",
+  "Read a few English sentences aloud every day.",
+  "Build a tiny web page each week to practice HTML and CSS."
+];
+
+/* ---------- Saved progress (safe storage) ---------- */
+let state = {done:{}, score:0, theme:null};
+try { const s = localStorage.getItem("paccy-state"); if (s) state = Object.assign(state, JSON.parse(s)); } catch(e) {}
+function save(){ try { localStorage.setItem("paccy-state", JSON.stringify(state)); } catch(e) {} }
+
+/* ---------- Helpers ---------- */
+const $ = id => document.getElementById(id);
+let cat = "all", current = null, answered = false;
+
+/* ---------- Theme ---------- */
+function applyTheme(t){
+  if (t) document.documentElement.setAttribute("data-theme", t);
+  const dark = t ? t === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+  $("themeBtn").textContent = dark ? "☀️" : "🌙";
+}
+$("themeBtn").onclick = () => {
+  const isDark = document.documentElement.getAttribute("data-theme") === "dark" ||
+    (!document.documentElement.hasAttribute("data-theme") && matchMedia("(prefers-color-scheme: dark)").matches);
+  state.theme = isDark ? "light" : "dark"; applyTheme(state.theme); save();
+};
+
+/* ---------- Dashboard ---------- */
+function renderStats(){
+  const n = Object.keys(state.done).length, pct = Math.round(n / COURSES.length * 100);
+  $("sDone").textContent = n + "/" + COURSES.length;
+  $("sScore").textContent = state.score;
+  $("sPct").textContent = pct + "%";
+  $("barFill").style.width = pct + "%";
+}
+
+/* ---------- Course list ---------- */
+function renderCourses(){
+  const q = $("search").value.trim().toLowerCase();
+  const list = COURSES.filter(c => (cat === "all" || c.cat === cat) &&
+    (c.name + " " + c.desc).toLowerCase().includes(q));
+  $("grid").innerHTML = list.map(c => `
+    <div class="card">
+      ${state.done[c.id] ? '<span class="badge">✔ Done</span>' : ""}
+      <h3>${c.icon} ${c.name}</h3>
+      <p>${c.desc}</p>
+      <p class="level">Level: ${c.level}</p>
+      <button class="main" type="button" data-open="${c.id}">${state.done[c.id] ? "Review Course" : "Start Course"}</button>
+    </div>`).join("");
+  $("empty").style.display = list.length ? "none" : "block";
+}
+$("grid").onclick = e => { const id = e.target.dataset.open; if (id) openLesson(id); };
+$("search").oninput = renderCourses;
+document.querySelectorAll(".chip").forEach(b => b.onclick = () => {
+  document.querySelectorAll(".chip").forEach(x => x.classList.remove("on"));
+  b.classList.add("on"); cat = b.dataset.cat; renderCourses();
+});
+
+/* ---------- Lesson + quiz ---------- */
+function openLesson(id){
+  current = COURSES.find(c => c.id === id); answered = false;
+  $("lTitle").textContent = current.icon + " " + current.name + " – Lesson 1";
+  $("lBody").innerHTML = current.lesson;
+  $("qText").textContent = current.q.t;
+  $("qMsg").textContent = "";
+  $("qOpts").innerHTML = current.q.o.map((o,i) => `<button class="opt" type="button" data-i="${i}">${o}</button>`).join("");
+  $("doneBtn").textContent = state.done[id] ? "Completed ✔" : "Mark as complete";
+  $("lesson").style.display = "block";
+  $("lesson").scrollIntoView({behavior:"smooth"});
+}
+$("qOpts").onclick = e => {
+  const i = e.target.dataset.i; if (i === undefined || answered) return;
+  answered = true;
+  const ok = +i === current.q.a, btns = $("qOpts").children;
+  btns[current.q.a].classList.add("right");
+  if (!ok) btns[+i].classList.add("wrong");
+  $("qMsg").textContent = ok ? "🎉 Correct! +10 points" : "Not quite. The right answer is highlighted.";
+  if (ok){ state.score += 10; save(); renderStats(); }
+};
+$("doneBtn").onclick = () => {
+  if (!current) return;
+  state.done[current.id] = true; save(); renderStats(); renderCourses();
+  $("doneBtn").textContent = "Completed ✔";
+};
+$("closeBtn").onclick = () => {
+  $("lesson").style.display = "none";
+  $("courses").scrollIntoView({behavior:"smooth"});
+};
+
+/* ---------- Start ---------- */
+$("tipText").textContent = TIPS[new Date().getDate() % TIPS.length];
+applyTheme(state.theme);
+renderStats();
+renderCourses();
+</script>
+</body>
+</html>
