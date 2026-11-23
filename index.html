@@ -1,545 +1,287 @@
-
-<section class="paccy-hero">
-
-  <nav class="paccy-navbar">
-    <h2 class="logo">PACCY<span> EDUCATION HUB</span></h2>
-
-    <div class="nav-links">
-      <a href="#home">Home</a>
-      <a href="#courses">Courses</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-    </div>
-
-    <a href="#courses" class="nav-button">Start Learning</a>
-  </nav>
-
-  <div class="hero-content" id="home">
-    <div class="hero-card">
-      <div class="hero-label">
-        ● EDUCATION · TECHNOLOGY · INNOVATION
-      </div>
-
-      <h1>
-        Building Knowledge for
-        <span>Learning, Growth & Success.</span>
-      </h1>
-
-      <p>
-        Welcome to Paccy Education Hub, your destination
-        for quality education, professional skills,
-        technology and practical learning opportunities.
-        Discover courses, improve your knowledge and
-        build your future with us.
-      </p>
-
-      <div class="hero-buttons">
-        <a href="#courses" class="primary-btn">
-          Explore Courses
-        </a>
-
-        <a href="#about" class="secondary-btn">
-          Discover More
-        </a>
-      </div>
-
-      <div class="creator">
-        CREATED BY PACIFIQUE
-      </div>
-    </div>
-  </div>
-
-  <div class="hero-bottom">
-    <p>LEARN TODAY | BUILD TOMORROW</p>
-  </div>
-
-</section>
-
+!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Paccy Education Hub</title>
 <style>
-/* PACCY EDUCATION HUB - COURSE SECTION */
-#paccy-courses {
-  --primary: #0755c9;
-  --dark: #10213b;
-  --light: #f3f7ff;
-  font-family: Arial, sans-serif;
-  color: #24334a;
-  padding: 45px 6%;
-  background: #f5f8ff;
+:root{
+  --bg:#f0f5ff;--surface:#fff;--text:#1d2433;--muted:#566077;
+  --navy:#071952;--teal:#088395;--accent:#35e0d0;--soft:#dff6ff;--ok:#1a9d5a;--bad:#d64545;
+  --shadow:0 4px 14px #00000018;color-scheme:light;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
 }
-#paccy-courses * { box-sizing: border-box; }
-#paccy-courses .course-header {
-  text-align: center;
-  margin-bottom: 35px;
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--bg:#0b1220;--surface:#141d33;--text:#e8edf8;--muted:#9aa6c0;--navy:#0a1a4a;--soft:#12233f;--shadow:0 4px 14px #00000060;color-scheme:dark}
 }
-#paccy-courses .course-header h2 {
-  font-size: 34px;
-  color: var(--dark);
-  margin-bottom: 10px;
-}
-#paccy-courses .course-header p {
-  color: #607087;
-  line-height: 1.7;
-}
-#paccy-courses .category {
-  margin: 35px 0;
-}
-#paccy-courses .category h3 {
-  color: var(--primary);
-  font-size: 25px;
-  border-left: 5px solid var(--primary);
-  padding-left: 14px;
-}
-#paccy-courses .course-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 18px;
-}
-#paccy-courses .course-card {
-  background: white;
-  border-radius: 13px;
-  padding: 22px;
-  box-shadow: 0 4px 16px rgba(20,50,90,.08);
-  border: 1px solid #e5ebf5;
-  transition: .25s;
-}
-#paccy-courses .course-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 22px rgba(20,50,90,.14);
-}
-#paccy-courses .course-card h4 {
-  color: var(--dark);
-  margin: 8px 0;
-}
-#paccy-courses .course-card p {
-  font-size: 14px;
-  line-height: 1.6;
-  color: #64748b;
-}
-#paccy-courses .course-number {
-  color: var(--primary);
-  font-weight: bold;
-}
-#paccy-courses .notes-button {
-  background: var(--primary);
-  color: white;
-  border: none;
-  border-radius: 7px;
-  padding: 11px 17px;
-  margin-top: 12px;
-  cursor: pointer;
-  font-weight: bold;
-}
-#paccy-courses .notes-button:hover {
-  background: #063c91;
-}
-#paccy-courses .category-notes {
-  display: none;
-  background: white;
-  border-radius: 12px;
-  padding: 28px;
-  margin-top: 22px;
-  line-height: 1.8;
-  border: 1px solid #dce6f5;
-}
-#paccy-courses .category-notes.show {
-  display: block;
-}
-#paccy-courses .category-notes h3 {
-  color: var(--primary);
-  border: none;
-  padding: 0;
-}
-#paccy-courses .category-notes h4 {
-  color: var(--dark);
-  margin-top: 20px;
-}
-#paccy-courses .category-notes li {
-  margin-bottom: 8px;
-}
-#paccy-courses .course-footer {
-  text-align: center;
-  padding: 30px 10px;
-  margin-top: 40px;
-  background: var(--dark);
-  color: white;
-  border-radius: 12px;
-}
-#paccy-courses .course-footer strong {
-  color: #70b5ff;
-}
-@media(max-width:600px) {
-  #paccy-courses { padding: 30px 5%; }
-  #paccy-courses .course-header h2 { font-size: 27px; }
-  #paccy-courses .category-notes { padding: 18px; }
-}
-@media print {
-  #paccy-courses { background: white; padding: 0; }
-  #paccy-courses .course-header,
-  #paccy-courses .course-grid,
-  #paccy-courses .notes-button,
-  #paccy-courses .course-footer { display: none !important; }
-  #paccy-courses .category { display: none !important; }
-  #paccy-courses .category-notes,
-  #paccy-courses .category-notes.show {
-    display: block !important;
-    break-before: page;
-    page-break-before: always;
-    min-height: 250mm;
-    border: none;
-    padding: 15mm;
-    margin: 0;
-    font-size: 11pt;
-  }
+:root[data-theme="dark"]{--bg:#0b1220;--surface:#141d33;--text:#e8edf8;--muted:#9aa6c0;--navy:#0a1a4a;--soft:#12233f;--shadow:0 4px 14px #00000060;color-scheme:dark}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+
+/* Header */
+#home{background:linear-gradient(135deg,#071952,#088395);color:#fff;display:flex;align-items:center;gap:40px;padding:50px 60px}
+.avatar{width:150px;height:150px;flex:none;border-radius:50%;border:4px solid #fff;background:#0b2a6b;display:grid;place-items:center;font-size:64px;font-weight:bold;box-shadow:0 6px 18px #00000050}
+.header-text{flex:1;text-align:center}
+.header-text h1{font-size:44px;letter-spacing:2px;margin-bottom:10px}
+.header-text p{font-size:19px;margin:6px 0}
+.creator{font-style:italic;margin-top:16px}
+
+/* Nav */
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--navy);display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:6px;padding:10px}
+nav a{color:#fff;text-decoration:none;font-weight:bold;padding:8px 14px;border-radius:6px}
+nav a:hover{color:var(--accent)}
+.icon-btn{background:transparent;border:1px solid #ffffff55;color:#fff;border-radius:6px;padding:7px 12px;cursor:pointer;font-size:15px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--navy);z-index:30}
+
+/* Sections */
+section{max-width:1100px;margin:auto;padding:36px 20px}
+h2.title{color:var(--navy);font-size:28px;text-align:center;margin-bottom:10px}
+:root[data-theme="dark"] h2.title{color:var(--accent)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) h2.title{color:var(--accent)}}
+.lead{text-align:center;max-width:720px;margin:0 auto 20px;color:var(--muted)}
+
+/* Progress dashboard */
+.dash{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px}
+.stat{background:var(--surface);border-radius:12px;padding:18px;text-align:center;box-shadow:var(--shadow)}
+.stat b{display:block;font-size:30px;color:var(--teal)}
+.bar{height:10px;background:var(--soft);border-radius:99px;overflow:hidden;margin-top:14px}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--teal),var(--accent));transition:width .5s}
+
+/* Tools */
+.tools{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:20px}
+.tools input{flex:1 1 240px;max-width:380px;padding:11px 14px;border-radius:8px;border:1px solid var(--muted);background:var(--surface);color:var(--text);font-size:16px}
+.chip{border:1px solid var(--teal);background:var(--surface);color:var(--teal);padding:9px 14px;border-radius:99px;cursor:pointer;font-weight:bold}
+.chip.on{background:var(--teal);color:#fff}
+
+/* Cards */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.card{background:var(--surface);border-radius:12px;padding:22px;box-shadow:var(--shadow);border-top:5px solid var(--teal);display:flex;flex-direction:column;gap:8px;position:relative}
+.card h3{color:var(--teal)}
+.level{font-size:14px;font-weight:bold;color:var(--muted)}
+.badge{position:absolute;top:10px;right:12px;background:var(--ok);color:#fff;font-size:12px;padding:2px 9px;border-radius:99px}
+button.main{margin-top:auto;background:var(--teal);color:#fff;border:0;border-radius:6px;padding:11px 16px;cursor:pointer;font-size:15px}
+button.main:hover{background:var(--navy)}
+button.ghost{background:transparent;color:var(--teal);border:1px solid var(--teal);border-radius:6px;padding:10px 16px;cursor:pointer}
+.empty{text-align:center;color:var(--muted);padding:20px;display:none}
+
+/* Lesson panel */
+#lesson{display:none;background:var(--surface);border-radius:14px;box-shadow:var(--shadow);margin:10px auto 30px;max-width:850px}
+#lesson h3{margin:14px 0 6px;color:var(--teal)}
+#lesson ul{margin-left:22px}
+.quiz{margin-top:22px;padding:16px;background:var(--soft);border-radius:10px}
+.opt{display:block;width:100%;text-align:left;margin-top:8px;padding:10px 12px;border-radius:8px;border:1px solid var(--muted);background:var(--surface);color:var(--text);cursor:pointer;font-size:15px}
+.opt.right{border-color:var(--ok);background:#1a9d5a30}
+.opt.wrong{border-color:var(--bad);background:#d6454530}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+
+/* Daily tip */
+.tip{background:var(--soft);border-left:5px solid var(--teal);border-radius:10px;padding:18px;max-width:760px;margin:auto}
+
+.about{background:var(--soft);text-align:center;max-width:none}
+.about p{max-width:720px;margin:auto}
+footer{background:var(--navy);color:#fff;text-align:center;padding:22px;line-height:1.8}
+
+@media (max-width:700px){
+  #home{flex-direction:column;padding:30px 20px;gap:20px}
+  .header-text h1{font-size:30px}
 }
 </style>
+</head>
+<body>
 
-<section id="paccy-courses">
-
-  <div class="course-header">
-    <h2>Explore Our Courses</h2>
-    <p>
-      Welcome to Paccy Education Hub. Discover professional,
-      technical and educational courses designed to develop
-      knowledge, practical skills and creativity.
-    </p>
-    <p><strong>20 Courses | 4 Categories | Unlimited Learning Opportunities</strong></p>
+<header id="home">
+  <div class="avatar" aria-label="Pacifique">P</div>
+  <div class="header-text">
+    <h1>PACCY EDUCATION HUB</h1>
+    <p>Learn Today, Lead Tomorrow!</p>
+    <p>Your Gateway to Knowledge and Skills</p>
+    <div class="creator">Created by Pacifique</div>
   </div>
+</header>
 
-  <!-- CATEGORY 1: EDUCATION -->
+<nav>
+  <a href="#home">Home</a>
+  <a href="#progress">Progress</a>
+  <a href="#courses">Courses</a>
+  <a href="#about">About</a>
+  <a href="#contact">Contact</a>
+  <button class="icon-btn" id="themeBtn" type="button" aria-label="Toggle dark mode">🌙</button>
+</nav>
 
-  <div class="category">
-    <h3>📚 1. Education Courses</h3>
-    <div class="course-grid">
-
-      <div class="course-card">
-        <span class="course-number">COURSE 01</span>
-        <h4>Early Childhood Education</h4>
-        <p>Learn how young children grow, develop, learn and interact through play and early learning activities.</p>
-      </div>
-
-      <div class="course-card">
-        <span class="course-number">COURSE 02</span>
-        <h4>Primary Education</h4>
-        <p>Develop knowledge and skills for teaching children in primary schools using effective teaching methods.</p>
-      </div>
-
-      <div class="course-card">
-        <span class="course-number">COURSE 03</span>
-        <h4>Secondary Education</h4>
-        <p>Explore subject teaching, classroom management, assessment and learning strategies for secondary schools.</p>
-      </div>
-
-      <div class="course-card">
-        <span class="course-number">COURSE 04</span>
-        <h4>Special Needs Education</h4>
-        <p>Understand inclusive education and how to support learners with different learning needs and disabilities.</p>
-      </div>
-
-      <div class="course-card">
-        <span class="course-number">COURSE 05</span>
-        <h4>Educational Psychology</h4>
-        <p>Study how learners think, behave, develop and acquire knowledge in different educational environments.</p>
-      </div>
-
-    </div>
-    <button class="notes-button" onclick="togglePaccyNotes('education-notes',this)">Read Education Notes</button>
-
-    <div class="category-notes" id="education-notes">
-      <h3>EDUCATION COURSE NOTES</h3>
-      <h4>1. Introduction to Education</h4>
-      <p>Education is the process through which people acquire knowledge, skills, values, attitudes and positive behaviours. It helps individuals develop their abilities and become responsible members of society. Education takes place in schools, homes, communities and other learning environments. It is an important tool for social, economic and cultural development.</p>
-
-      <h4>2. Early Childhood Education</h4>
-      <p>Early Childhood Education focuses on the development and learning of young children. During this stage, children develop language, movement, social relationships, creativity and thinking skills. Teachers use songs, games, storytelling, drawing, play and practical activities to support learning. A safe and friendly classroom helps children develop confidence and curiosity.</p>
-      <p>Important areas include child development, play-based learning, communication, early numeracy, health, nutrition and child protection.</p>
-
-      <h4>3. Primary Education</h4>
-      <p>Primary Education provides learners with basic knowledge and skills in literacy, numeracy, science, languages and social studies. Teachers should use learner-centred approaches that encourage participation. Examples include group work, discussions, demonstrations, educational games and problem-solving activities.</p>
-      <p>Assessment helps teachers identify learners' strengths and difficulties. Teachers can use oral questions, written exercises, observation, practical tasks and tests to monitor progress.</p>
-
-      <h4>4. Secondary Education</h4>
-      <p>Secondary Education develops deeper subject knowledge, independent thinking, communication and problem-solving abilities. Teachers prepare lessons according to learning objectives and select appropriate teaching methods and resources. Learners are encouraged to conduct research, participate in discussions and apply knowledge to real-life situations.</p>
-
-      <h4>5. Special Needs Education</h4>
-      <p>Special Needs Education promotes equal learning opportunities for all learners. Some learners may experience visual, hearing, physical, intellectual or specific learning difficulties. Teachers should identify barriers and provide appropriate support.</p>
-      <ul>
-        <li>Use clear instructions and simple language.</li>
-        <li>Provide large-print learning materials when needed.</li>
-        <li>Use visual aids, audio resources and practical demonstrations.</li>
-        <li>Allow additional time when appropriate.</li>
-        <li>Encourage cooperation and respect among learners.</li>
-        <li>Adapt activities according to individual learning needs.</li>
-      </ul>
-
-      <h4>6. Educational Psychology</h4>
-      <p>Educational Psychology studies how people learn and develop in educational settings. It helps teachers understand motivation, memory, attention, intelligence, emotions and individual differences. Teachers can use this knowledge to create supportive learning environments and select suitable teaching strategies.</p>
-
-      <h4>7. Qualities of a Good Teacher</h4>
-      <p>A good teacher should be patient, responsible, creative, respectful, organised and committed to learners' success. Teachers should prepare lessons, manage classrooms effectively, assess learning and provide constructive feedback.</p>
-
-      <h4>8. Learning Outcomes</h4>
-      <p>After studying education courses, learners should be able to explain educational principles, prepare learning activities, support different learners, assess performance and demonstrate professional teaching values.</p>
-    </div>
+<section id="progress">
+  <h2 class="title">Your Learning Journey</h2>
+  <p class="lead">Finish lessons and pass the quick quizzes to earn badges. Your progress is saved on this device.</p>
+  <div class="dash">
+    <div class="stat"><b id="sDone">0</b>Courses completed</div>
+    <div class="stat"><b id="sScore">0</b>Quiz points</div>
+    <div class="stat"><b id="sPct">0%</b>Overall progress<div class="bar"><i id="barFill"></i></div></div>
   </div>
-
-  <!-- CATEGORY 2: BUILDING CONSTRUCTION -->
-
-  <div class="category">
-    <h3>🏗️ 2. Building Construction Courses</h3>
-    <div class="course-grid">
-
-      <div class="course-card">
-        <span class="course-number">COURSE 06</span>
-        <h4>Civil Engineering</h4>
-        <p>Study the design, construction and maintenance of roads, bridges, buildings and other infrastructure.</p>
-      </div>
-
-      <div class="course-card">
-        <span class="course-number">COURSE 07</span>
-        <h4>Building Technology</h4>
-        <p>Learn construction materials, building techniques, site operations and the stages of building projects.</p>
-      </div>
-
-      <div class="course-card">
-        <span class="course-number">COURSE 08</span>
-        <h4>Architecture</h4>
-        <p>Explore building design, drawing, planning, aesthetics, space management and sustainable buildings.</p>
-      </div>
-
-      <div class="course-card">
-        <span class="course-number">COURSE 09</span>
-        <h4>Quantity Surveying</h4>
-        <p>Learn how to estimate construction costs, measure materials, prepare budgets and manage project expenses.</p>
-      </div>
-
-      <div class="course-card">
-        <span class="course-number">COURSE 10</span>
-        <h4>Plumbing and Pipe Fitting</h4>
-        <p>Develop skills in water supply systems, drainage, pipe installation, maintenance and repair.</p>
-      </div>
-
-    </div>
-    <button class="notes-button" onclick="togglePaccyNotes('construction-notes',this)">Read Construction Notes</button>
-
-    <div class="category-notes" id="construction-notes">
-      <h3>BUILDING CONSTRUCTION COURSE NOTES</h3>
-
-      <h4>1. Introduction to Building Construction</h4>
-      <p>Building construction is the process of planning, designing and creating structures such as houses, schools, hospitals, offices and commercial buildings. It requires technical knowledge, suitable materials, skilled workers, safety procedures and proper project management. Construction contributes to community development by providing safe places for living, learning, working and doing business.</p>
-
-      <h4>2. Civil Engineering</h4>
-      <p>Civil Engineering deals with the design, construction and maintenance of infrastructure. Civil engineers work on roads, bridges, drainage systems, water supply networks, dams and buildings. They use mathematics, physics, engineering principles and technical drawings to make structures safe and useful.</p>
-      <p>Important areas include structural engineering, transportation engineering, geotechnical engineering, water engineering and construction management.</p>
-
-      <h4>3. Building Technology</h4>
-      <p>Building Technology focuses on the methods, materials and processes used in construction. Students learn about foundations, walls, floors, roofs, doors, windows and finishing work.</p>
-      <p>Common construction materials include cement, sand, stones, bricks, timber, steel, glass and roofing sheets. The selection of materials depends on their strength, durability, availability, cost and suitability for the project.</p>
-      <p>Construction generally involves site preparation, setting out, foundation construction, wall construction, roofing, installation of services and finishing.</p>
-
-      <h4>4. Architecture</h4>
-      <p>Architecture is the art and science of designing buildings and spaces. Architects prepare plans and drawings that show the appearance, arrangement and function of buildings. They consider safety, comfort, ventilation, lighting, accessibility, beauty and environmental sustainability.</p>
-      <p>Architectural drawings may include floor plans, elevations, sections and site plans. Computer-aided design software helps professionals create and modify technical drawings.</p>
-
-      <h4>5. Quantity Surveying</h4>
-      <p>Quantity Surveying involves measuring construction work, estimating quantities of materials, preparing cost estimates and controlling project expenses. Quantity surveyors help clients and contractors understand the financial requirements of construction projects.</p>
-      <p>Important tasks include preparing bills of quantities, comparing prices, monitoring expenditure and evaluating variations during construction.</p>
-
-      <h4>6. Plumbing and Pipe Fitting</h4>
-      <p>Plumbing involves installing and maintaining systems that supply clean water and remove wastewater. A plumber works with pipes, taps, valves, tanks, pumps, drainage systems and sanitary equipment.</p>
-      <p>Good plumbing protects public health by ensuring safe water distribution and proper wastewater disposal. Students should learn how to select pipes, measure and cut materials, join fittings, detect leaks and maintain systems safely.</p>
-
-      <h4>7. Construction Safety</h4>
-      <p>Construction workers must follow safety procedures to prevent accidents. Personal protective equipment includes helmets, safety boots, gloves, reflective clothing and protective eyewear. Workers should keep sites organised, use tools correctly and follow instructions.</p>
-
-      <h4>8. Learning Outcomes</h4>
-      <p>After studying these courses, learners should understand construction processes, identify building materials, interpret basic drawings, estimate quantities, explain plumbing systems and apply essential workplace safety practices.</p>
-    </div>
-  </div>
-
-  <!-- CATEGORY 3: MULTIMEDIA -->
-
-  <div class="category">
-    <h3>🎨 3. Multimedia Courses</h3>
-    <div class="course-grid">
-
-      <div class="course-card">
-        <span class="course-number">COURSE 11</span>
-        <h4>Graphic Design</h4>
-        <p>Learn visual communication through posters, logos, illustrations, typography and digital designs.</p>
-      </div>
-
-      <div class="course-card">
-        <span class="course-number">COURSE 12</span>
-        <h4>Video Production and Editing</h4>
-        <p>Develop skills in video recording, storytelling, editing, sound management and content production.</p>
-      </div>
-
-      <div class="course-card">
-        <span class="course-number">COURSE 13</span>
-        <h4>Photography and Videography</h4>
-        <p>Explore camera operation, lighting, composition, image creation and professional visual storytelling.</p>
-      </div>
-
-      <div class="course-card">
-        <span class="course-number">COURSE 14</span>
-        <h4>Animation and Cartoon Production</h4>
-        <p>Learn how to create animated characters, movements, cartoon stories and digital animations.</p>
-      </div>
-
-      <div class="course-card">
-        <span class="course-number">COURSE 15</span>
-        <h4>Web Design and Development</h4>
-        <p>Learn HTML, CSS, JavaScript and the skills needed to create attractive and functional websites.</p>
-      </div>
-
-    </div>
-    <button class="notes-button" onclick="togglePaccyNotes('multimedia-notes',this)">Read Multimedia Notes</button>
-
-    <div class="category-notes" id="multimedia-notes">
-      <h3>MULTIMEDIA COURSE NOTES</h3>
-
-      <h4>1. Introduction to Multimedia</h4>
-      <p>Multimedia is the combination of different forms of communication such as text, images, graphics, audio, video and animation. It is used in education, entertainment, advertising, communication and business. Multimedia helps people communicate information in attractive, understandable and interactive ways.</p>
-
-      <h4>2. Graphic Design</h4>
-      <p>Graphic Design is the process of creating visual materials to communicate messages. Graphic designers produce posters, banners, logos, brochures, advertisements, social media graphics and other visual products.</p>
-      <p>Important design principles include balance, contrast, alignment, repetition, proximity, colour harmony and visual hierarchy. Common tools include Adobe Photoshop, Adobe Illustrator and Canva.</p>
-      <p>A good design should be clear, attractive, readable and suitable for its intended audience.</p>
-
-      <h4>3. Video Production and Editing</h4>
-      <p>Video production is the process of creating videos for education, entertainment, marketing and communication. It involves three main stages: pre-production, production and post-production.</p>
-      <ul>
-        <li>Pre-production: planning, writing scripts, preparing equipment and organising scenes.</li>
-        <li>Production: recording video and audio using cameras and microphones.</li>
-        <li>Post-production: editing, adding transitions, music, titles, subtitles and visual effects.</li>
-      </ul>
-      <p>Video editing software includes Adobe Premiere Pro, DaVinci Resolve and CapCut.</p>
-
-      <h4>4. Photography and Videography</h4>
-      <p>Photography is the art of capturing images using a camera or another imaging device. Videography involves recording moving images and sound. Both require knowledge of composition, lighting, focus, camera settings and storytelling.</p>
-      <p>Important photography concepts include aperture, shutter speed, ISO, framing and the rule of thirds. Good lighting and proper camera positioning improve image quality.</p>
-
-      <h4>5. Animation and Cartoon Production</h4>
-      <p>Animation is the process of creating the illusion of movement by displaying a sequence of images or frames. Cartoon production involves designing characters, developing stories, creating scenes and adding movement and sound.</p>
-      <p>Common animation types include 2D animation, 3D animation, stop-motion animation and motion graphics. Animation is useful in education because it can explain difficult ideas through visual stories.</p>
-
-      <h4>6. Web Design and Development</h4>
-      <p>Web Design focuses on the appearance and user experience of websites, while Web Development focuses on building their functionality.</p>
-      <ul>
-        <li>HTML structures the content of a webpage.</li>
-        <li>CSS controls colours, layouts, spacing and appearance.</li>
-        <li>JavaScript adds interactive features and dynamic behaviour.</li>
-      </ul>
-      <p>Web designers should consider accessibility, navigation, responsive design, readability, loading speed and website security. Websites can be used for education, business, communication and sharing information.</p>
-
-      <h4>7. Copyright and Digital Responsibility</h4>
-      <p>Multimedia creators should respect copyright laws and use images, music, videos and other materials legally. They should protect personal information, obtain permission when necessary and communicate responsibly online.</p>
-
-      <h4>8. Learning Outcomes</h4>
-      <p>After studying multimedia courses, learners should be able to create digital designs, capture photographs, produce and edit videos, develop animations and build functional websites.</p>
-    </div>
-  </div>
-
-  <!-- CATEGORY 4: MANUFACTURING -->
-
-  <div class="category">
-    <h3>⚙️ 4. Manufacturing Courses</h3>
-    <div class="course-grid">
-
-      <div class="course-card">
-        <span class="course-number">COURSE 16</span>
-        <h4>Mechanical Manufacturing Technology</h4>
-        <p>Study machines, production processes, mechanical systems, tools and industrial equipment.</p>
-      </div>
-
-      <div class="course-card">
-        <span class="course-number">COURSE 17</span>
-        <h4>Welding and Metal Fabrication</h4>
-        <p>Learn metal cutting, joining, shaping, welding techniques and fabrication of metal products.</p>
-      </div>
-
-      <div class="course-card">
-        <span class="course-number">COURSE 18</span>
-        <h4>Electrical and Electronics Manufacturing</h4>
-        <p>Explore electrical components, electronic devices, circuit assembly, testing and maintenance.</p>
-      </div>
-
-      <div class="course-card">
-        <span class="course-number">COURSE 19</span>
-        <h4>Food Processing Technology</h4>
-        <p>Learn food preparation, preservation, packaging, quality control and food safety procedures.</p>
-      </div>
-
-      <div class="course-card">
-        <span class="course-number">COURSE 20</span>
-        <h4>Wood Technology and Furniture Making</h4>
-        <p>Develop skills in woodworking, furniture design, cutting, joining, finishing and product making.</p>
-      </div>
-
-    </div>
-    <button class="notes-button" onclick="togglePaccyNotes('manufacturing-notes',this)">Read Manufacturing Notes</button>
-
-    <div class="category-notes" id="manufacturing-notes">
-      <h3>MANUFACTURING COURSE NOTES</h3>
-
-      <h4>1. Introduction to Manufacturing</h4>
-      <p>Manufacturing is the process of transforming raw materials into useful products through machines, tools, labour and different production techniques. It plays an important role in economic development by creating employment, supporting businesses and supplying goods to society.</p>
-      <p>Manufacturing activities include product design, material selection, production planning, processing, assembly, quality control, packaging and distribution.</p>
-
-      <h4>2. Mechanical Manufacturing Technology</h4>
-      <p>Mechanical Manufacturing Technology focuses on producing machine parts, tools and mechanical products. Students learn about engineering materials, workshop equipment, machining processes and machine operation.</p>
-      <p>Common manufacturing processes include drilling, turning, milling, grinding, cutting and shaping. Students should understand measurements, technical drawings, machine maintenance and workshop safety.</p>
-
-      <h4>3. Welding and Metal Fabrication</h4>
-      <p>Welding is a process of joining two or more metal parts using heat, pressure or a combination of both. Metal fabrication involves cutting, bending, shaping and assembling metal to produce useful structures and products.</p>
-      <p>Common welding processes include arc welding, MIG welding and TIG welding. These methods are used in construction, vehicle repair, manufacturing and metalwork.</p>
-      <p>Safety is essential. Welders should use welding helmets, gloves, protective clothing, suitable footwear and proper ventilation. They should also follow equipment operating instructions.</p>
-
-      <h4>4. Electrical and Electronics Manufacturing</h4>
-      <p>This field involves producing, assembling and testing electrical and electronic products. Examples include electrical control panels, household appliances, circuit boards, lighting equipment and electronic devices.</p>
-      <p>Students learn about electrical components such as resistors, capacitors, diodes, transistors, switches, wires and connectors. They also study circuit diagrams, soldering, testing equipment and electrical safety.</p>
-      <p>Electrical work should only be performed under appropriate supervision and with proper safety precautions.</p>
-
-      <h4>5. Food Processing Technology</h4>
-      <p>Food Processing Technology involves changing raw agricultural products into safe and useful food products. It includes cleaning, sorting, cutting, heating, drying, cooling, preserving and packaging.</p>
-      <p>Examples include milk processing, fruit juice production, bread making, grain milling and vegetable preservation. Food processing helps reduce food waste, improve storage and make food available for longer periods.</p>
-      <p>Food safety requires clean equipment, good personal hygiene, correct storage temperatures, proper packaging and quality control.</p>
-
-      <h4>6. Wood Technology and Furniture Making</h4>
-      <p>Wood Technology focuses on processing timber and producing useful wooden products. Furniture makers design and manufacture chairs, tables, beds, cupboards, doors and other household or commercial products.</p>
-      <p>Important operations include measuring, marking, sawing, planing, drilling, joining, sanding and finishing. Tools may include saws, hammers, chisels, drills and measuring instruments.</p>
-      <p>Woodworkers should select suitable timber, reduce material waste and use protective equipment when working with machines and tools.</p>
-
-      <h4>7. Quality Control and Environmental Protection</h4>
-      <p>Quality control ensures that manufactured products meet required standards. Workers inspect materials, measure products, test performance and identify defects before products reach customers.</p>
-      <p>Manufacturers should also reduce waste, reuse materials where possible, recycle suitable resources and use energy efficiently. Sustainable manufacturing protects the environment while supporting economic development.</p>
-
-      <h4>8. Learning Outcomes</h4>
-      <p>After studying manufacturing courses, learners should understand production processes, identify tools and materials, explain industrial safety, perform basic practical tasks and appreciate quality control and environmental responsibility.</p>
-    </div>
-  </div>
-
-  <div class="course-footer">
-    <h3>Paccy Education Hub</h3>
-    <p>Knowledge is the foundation of innovation and success.</p>
-    <p><strong>Created by Pacifique</strong></p>
-    <p>Learn Today | Build Tomorrow</p>
-  </div>
-
 </section>
 
-<script>
-function togglePaccyNotes(id, button) {
-  const notes = document.getElementById(id);
-  const isOpen = notes.classList.toggle('show');
+<section>
+  <div class="tip"><strong>💡 Tip of the day:</strong> <span id="tipText"></span></div>
+</section>
 
-  button.textContent = isOpen
-    ? 'Close Category Notes'
-    : 'Read ' + (
-        id === 'education-notes' ? 'Education' :
-        id === 'construction-notes' ? 'Construction' :
-        id === 'multimedia-notes' ? 'Multimedia' :
-        'Manufacturing'
-      ) + ' Notes';
+<section id="courses">
+  <h2 class="title">Our Courses</h2>
+  <p class="lead">Search or filter, then choose a course to begin.</p>
+  <div class="tools">
+    <input id="search" type="search" placeholder="Search courses…" aria-label="Search courses">
+    <button class="chip on" data-cat="all" type="button">All</button>
+    <button class="chip" data-cat="tech" type="button">Tech</button>
+    <button class="chip" data-cat="school" type="button">School</button>
+    <button class="chip" data-cat="creative" type="button">Creative</button>
+  </div>
+  <div class="grid" id="grid"></div>
+  <p class="empty" id="empty">No courses match your search.</p>
+</section>
+
+<section id="lesson" aria-live="polite">
+  <h2 id="lTitle" class="title" style="text-align:left"></h2>
+  <div id="lBody"></div>
+  <div class="quiz">
+    <strong>Quick quiz</strong>
+    <p id="qText" style="margin-top:6px"></p>
+    <div id="qOpts"></div>
+    <p id="qMsg" style="margin-top:10px;font-weight:bold"></p>
+  </div>
+  <div class="actions">
+    <button class="main" id="doneBtn" type="button" style="margin-top:0">Mark as complete</button>
+    <button class="ghost" id="closeBtn" type="button">Back to courses</button>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <h2 class="title">About Paccy Education Hub</h2>
+  <p>Paccy Education Hub is an educational platform created by Pacifique to share knowledge, support learners, and encourage lifelong learning through technology.</p>
+</section>
+
+<footer id="contact">
+  <p><strong>PACCY EDUCATION HUB</strong></p>
+  <p>Created by Pacifique</p>
+  <p>Education is the key to a brighter future.</p>
+  <p>© 2026 Paccy Education Hub. All rights reserved.</p>
+</footer>
+
+<script>
+/* ---------- Data ---------- */
+const COURSES = [
+  {id:"excel",cat:"tech",icon:"💻",name:"Advanced Excel",desc:"Formulas, functions, charts, data analysis, and PivotTables.",level:"Beginner to Advanced",
+   lesson:"<h3>Introduction to Microsoft Excel</h3><p>Excel is a spreadsheet program used to organize, calculate, and analyze information.</p><h3>Key concepts</h3><ul><li>Workbook: an Excel file.</li><li>Worksheet: a sheet inside a workbook.</li><li>Cell: where a row and column meet.</li><li>Formula: an expression used for calculations.</li></ul><p>Example: type <code>=SUM(A1:A5)</code> to add the values in cells A1 to A5.</p>",
+   q:{t:"Which formula adds cells A1 to A5?",o:["=ADD(A1:A5)","=SUM(A1:A5)","=TOTAL(A1,A5)"],a:1}},
+  {id:"web",cat:"tech",icon:"🌐",name:"Web Design",desc:"Learn HTML, CSS, and how to build your own website.",level:"Beginner",
+   lesson:"<h3>Introduction to HTML</h3><p>HTML defines the structure of a web page, for example <code>&lt;h1&gt;Hello World&lt;/h1&gt;</code>.</p><p>CSS controls appearance: colors, spacing, and fonts. JavaScript adds interactive behavior.</p>",
+   q:{t:"Which language controls the look of a web page?",o:["HTML","CSS","SQL"],a:1}},
+  {id:"digital",cat:"tech",icon:"📊",name:"Digital Skills",desc:"Computer basics, internet use, and digital productivity.",level:"Beginner",
+   lesson:"<h3>Computer Basics</h3><ul><li>Hardware: the physical parts of a computer.</li><li>Software: the programs a computer runs.</li><li>Keyboard: enters text and commands.</li><li>Browser: software used to visit websites.</li></ul>",
+   q:{t:"Which of these is software?",o:["Keyboard","Monitor","Browser"],a:2}},
+  {id:"english",cat:"school",icon:"📝",name:"English",desc:"Improve grammar, vocabulary, reading, and writing.",level:"Beginner to Intermediate",
+   lesson:"<h3>Parts of Speech</h3><ul><li>Noun: names a person, place, or thing.</li><li>Verb: expresses an action or state.</li><li>Adjective: describes a noun.</li><li>Adverb: modifies a verb, adjective, or another adverb.</li></ul><p>Exercise: find the verb in “Students learn every day.”</p>",
+   q:{t:"What is the verb in “Students learn every day”?",o:["Students","learn","day"],a:1}},
+  {id:"science",cat:"school",icon:"🔬",name:"Science",desc:"Chemistry, biology, physics, and scientific thinking.",level:"School Learners",
+   lesson:"<h3>Introduction to Science</h3><p>Science is the systematic study of the natural world through observation, evidence, and experimentation.</p><p>Scientists ask questions, form hypotheses, test ideas, and analyze results.</p>",
+   q:{t:"What is a hypothesis?",o:["A testable explanation","A final proof","A lab tool"],a:0}},
+  {id:"arts",cat:"creative",icon:"🎨",name:"Creative Arts",desc:"Patterns, drawing, music, design, and creativity.",level:"Beginner",
+   lesson:"<h3>Introduction to Patterns</h3><p>A pattern is a repeated arrangement of shapes, lines, colors, sounds, or other elements.</p><p>Examples: stripes, repeated circles, geometric designs, and rhythm in music.</p>",
+   q:{t:"Which is an example of a pattern?",o:["One red dot","Repeating stripes","A blank page"],a:1}}
+];
+const TIPS = [
+  "Study in short bursts of 25 minutes, then rest for 5.",
+  "Teach what you learned to a friend. It is the fastest way to remember it.",
+  "Type formulas yourself in Excel instead of copying them.",
+  "Read a few English sentences aloud every day.",
+  "Build a tiny web page each week to practice HTML and CSS."
+];
+
+/* ---------- Saved progress (safe storage) ---------- */
+let state = {done:{}, score:0, theme:null};
+try { const s = localStorage.getItem("paccy-state"); if (s) state = Object.assign(state, JSON.parse(s)); } catch(e) {}
+function save(){ try { localStorage.setItem("paccy-state", JSON.stringify(state)); } catch(e) {} }
+
+/* ---------- Helpers ---------- */
+const $ = id => document.getElementById(id);
+let cat = "all", current = null, answered = false;
+
+/* ---------- Theme ---------- */
+function applyTheme(t){
+  if (t) document.documentElement.setAttribute("data-theme", t);
+  const dark = t ? t === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+  $("themeBtn").textContent = dark ? "☀️" : "🌙";
 }
+$("themeBtn").onclick = () => {
+  const isDark = document.documentElement.getAttribute("data-theme") === "dark" ||
+    (!document.documentElement.hasAttribute("data-theme") && matchMedia("(prefers-color-scheme: dark)").matches);
+  state.theme = isDark ? "light" : "dark"; applyTheme(state.theme); save();
+};
+
+/* ---------- Dashboard ---------- */
+function renderStats(){
+  const n = Object.keys(state.done).length, pct = Math.round(n / COURSES.length * 100);
+  $("sDone").textContent = n + "/" + COURSES.length;
+  $("sScore").textContent = state.score;
+  $("sPct").textContent = pct + "%";
+  $("barFill").style.width = pct + "%";
+}
+
+/* ---------- Course list ---------- */
+function renderCourses(){
+  const q = $("search").value.trim().toLowerCase();
+  const list = COURSES.filter(c => (cat === "all" || c.cat === cat) &&
+    (c.name + " " + c.desc).toLowerCase().includes(q));
+  $("grid").innerHTML = list.map(c => `
+    <div class="card">
+      ${state.done[c.id] ? '<span class="badge">✔ Done</span>' : ""}
+      <h3>${c.icon} ${c.name}</h3>
+      <p>${c.desc}</p>
+      <p class="level">Level: ${c.level}</p>
+      <button class="main" type="button" data-open="${c.id}">${state.done[c.id] ? "Review Course" : "Start Course"}</button>
+    </div>`).join("");
+  $("empty").style.display = list.length ? "none" : "block";
+}
+$("grid").onclick = e => { const id = e.target.dataset.open; if (id) openLesson(id); };
+$("search").oninput = renderCourses;
+document.querySelectorAll(".chip").forEach(b => b.onclick = () => {
+  document.querySelectorAll(".chip").forEach(x => x.classList.remove("on"));
+  b.classList.add("on"); cat = b.dataset.cat; renderCourses();
+});
+
+/* ---------- Lesson + quiz ---------- */
+function openLesson(id){
+  current = COURSES.find(c => c.id === id); answered = false;
+  $("lTitle").textContent = current.icon + " " + current.name + " – Lesson 1";
+  $("lBody").innerHTML = current.lesson;
+  $("qText").textContent = current.q.t;
+  $("qMsg").textContent = "";
+  $("qOpts").innerHTML = current.q.o.map((o,i) => `<button class="opt" type="button" data-i="${i}">${o}</button>`).join("");
+  $("doneBtn").textContent = state.done[id] ? "Completed ✔" : "Mark as complete";
+  $("lesson").style.display = "block";
+  $("lesson").scrollIntoView({behavior:"smooth"});
+}
+$("qOpts").onclick = e => {
+  const i = e.target.dataset.i; if (i === undefined || answered) return;
+  answered = true;
+  const ok = +i === current.q.a, btns = $("qOpts").children;
+  btns[current.q.a].classList.add("right");
+  if (!ok) btns[+i].classList.add("wrong");
+  $("qMsg").textContent = ok ? "🎉 Correct! +10 points" : "Not quite. The right answer is highlighted.";
+  if (ok){ state.score += 10; save(); renderStats(); }
+};
+$("doneBtn").onclick = () => {
+  if (!current) return;
+  state.done[current.id] = true; save(); renderStats(); renderCourses();
+  $("doneBtn").textContent = "Completed ✔";
+};
+$("closeBtn").onclick = () => {
+  $("lesson").style.display = "none";
+  $("courses").scrollIntoView({behavior:"smooth"});
+};
+
+/* ---------- Start ---------- */
+$("tipText").textContent = TIPS[new Date().getDate() % TIPS.length];
+applyTheme(state.theme);
+renderStats();
+renderCourses();
 </script>
+</body>
+</html>
