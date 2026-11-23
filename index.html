@@ -1,383 +1,11 @@
 <img src="paccy.png" alt="Pacifique, creator of Paccy Education Hub" onerror="this.remove()"><!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Paccy Education Hub</title>
-<style>
-:root{
-  --bg:#f0f5ff;--surface:#fff;--text:#1d2433;--muted:#566077;
-  --navy:#071952;--teal:#088395;--accent:#35e0d0;--soft:#dff6ff;--ok:#1a9d5a;--bad:#d64545;
-  --shadow:0 4px 14px #00000018;color-scheme:light;
-  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
-}
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){--bg:#0b1220;--surface:#141d33;--text:#e8edf8;--muted:#9aa6c0;--navy:#0a1a4a;--soft:#12233f;--shadow:0 4px 14px #00000060;color-scheme:dark}
-}
-:root[data-theme="dark"]{--bg:#0b1220;--surface:#141d33;--text:#e8edf8;--muted:#9aa6c0;--navy:#0a1a4a;--soft:#12233f;--shadow:0 4px 14px #00000060;color-scheme:dark}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:70px}
-body{font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
-
-/* Header */
-#home{background:linear-gradient(135deg,#071952,#088395);color:#fff;display:flex;align-items:center;gap:40px;padding:50px 60px}
-.avatar{position:relative;overflow:hidden;width:150px;height:150px;flex:none;border-radius:50%;border:4px solid #fff;background:#0b2a6b;display:grid;place-items:center;font-size:64px;font-weight:bold;box-shadow:0 6px 18px #00000050}
-.avatar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top}
-.header-text{flex:1;text-align:center}
-.header-text h1{font-size:44px;letter-spacing:2px;margin-bottom:10px}
-.header-text p{font-size:19px;margin:6px 0}
-.creator{font-style:italic;margin-top:16px}
-
-/* Nav */
-nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--navy);display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:6px;padding:10px}
-nav a{color:#fff;text-decoration:none;font-weight:bold;padding:8px 14px;border-radius:6px}
-nav a:hover{color:var(--accent)}
-.icon-btn{background:transparent;border:1px solid #ffffff55;color:#fff;border-radius:6px;padding:7px 12px;cursor:pointer;font-size:15px}
-body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--navy);z-index:30}
-
-/* Sections */
-section{max-width:1100px;margin:auto;padding:36px 20px}
-h2.title{color:var(--navy);font-size:28px;text-align:center;margin-bottom:10px}
-:root[data-theme="dark"] h2.title{color:var(--accent)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) h2.title{color:var(--accent)}}
-.lead{text-align:center;max-width:720px;margin:0 auto 20px;color:var(--muted)}
-
-/* Progress dashboard */
-.dash{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px}
-.stat{background:var(--surface);border-radius:12px;padding:18px;text-align:center;box-shadow:var(--shadow)}
-.stat b{display:block;font-size:30px;color:var(--teal)}
-.bar{height:10px;background:var(--soft);border-radius:99px;overflow:hidden;margin-top:14px}
-.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--teal),var(--accent));transition:width .5s}
-
-/* Tools */
-.tools{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:20px}
-.tools input{flex:1 1 240px;max-width:380px;padding:11px 14px;border-radius:8px;border:1px solid var(--muted);background:var(--surface);color:var(--text);font-size:16px}
-.chip{border:1px solid var(--teal);background:var(--surface);color:var(--teal);padding:9px 14px;border-radius:99px;cursor:pointer;font-weight:bold}
-.chip.on{background:var(--teal);color:#fff}
-
-/* Cards */
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
-.card{background:var(--surface);border-radius:12px;padding:22px;box-shadow:var(--shadow);border-top:5px solid var(--teal);display:flex;flex-direction:column;gap:8px;position:relative}
-.card h3{color:var(--teal)}
-.level{font-size:14px;font-weight:bold;color:var(--muted)}
-.badge{position:absolute;top:10px;right:12px;background:var(--ok);color:#fff;font-size:12px;padding:2px 9px;border-radius:99px}
-button.main{margin-top:auto;background:var(--teal);color:#fff;border:0;border-radius:6px;padding:11px 16px;cursor:pointer;font-size:15px}
-button.main:hover{background:var(--navy)}
-button.ghost{background:transparent;color:var(--teal);border:1px solid var(--teal);border-radius:6px;padding:10px 16px;cursor:pointer}
-.empty{text-align:center;color:var(--muted);padding:20px;display:none}
-
-/* Lesson panel */
-#lesson{display:none;background:var(--surface);border-radius:14px;box-shadow:var(--shadow);margin:10px auto 30px;max-width:850px}
-#lesson h3{margin:14px 0 6px;color:var(--teal)}
-#lesson ul{margin-left:22px}
-.quiz{margin-top:22px;padding:16px;background:var(--soft);border-radius:10px}
-.opt{display:block;width:100%;text-align:left;margin-top:8px;padding:10px 12px;border-radius:8px;border:1px solid var(--muted);background:var(--surface);color:var(--text);cursor:pointer;font-size:15px}
-.opt.right{border-color:var(--ok);background:#1a9d5a30}
-.opt.wrong{border-color:var(--bad);background:#d6454530}
-.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
-
-/* Daily tip */
-.tip{background:var(--soft);border-left:5px solid var(--teal);border-radius:10px;padding:18px;max-width:760px;margin:auto}
-
-.about{background:var(--soft);text-align:center;max-width:none}
-.about p{max-width:720px;margin:auto}
-footer{background:var(--navy);color:#fff;text-align:center;padding:22px;line-height:1.8}
-
-@media (max-width:700px){
-  #home{flex-direction:column;padding:30px 20px;gap:20px}
-  .header-text h1{font-size:30px}
-}
-</style>
-</head>
-<body>
-
-<header id="home">
-  <div class="avatar" aria-label="Pacifique">
-    <img src="paccy.png" alt="Pacifique, creator of Paccy Education Hub" onerror="this.remove()">P
-  </div>
-  <div class="header-text">
-    <h1>PACCY EDUCATION HUB</h1>
-    <p>Learn Today, Lead Tomorrow!</p>
-    <p>Your Gateway to Knowledge and Skills</p>
-    <div class="creator">Created by Pacifique</div>
-  </div>
-</header>
-
-<nav>
-  <a href="#home">Home</a>
-  <a href="#progress">Progress</a>
-  <a href="#courses">Courses</a>
-  <a href="#about">About</a>
-  <a href="#contact">Contact</a>
-  <button class="icon-btn" id="themeBtn" type="button" aria-label="Toggle dark mode">🌙</button>
-</nav>
-
-<section id="progress">
-  <h2 class="title">Your Learning Journey</h2>
-  <p class="lead">Finish lessons and pass the quick quizzes to earn badges. Your progress is saved on this device.</p>
-  <div class="dash">
-    <div class="stat"><b id="sDone">0</b>Courses completed</div>
-    <div class="stat"><b id="sScore">0</b>Quiz points</div>
-    <div class="stat"><b id="sPct">0%</b>Overall progress<div class="bar"><i id="barFill"></i></div></div>
-  </div>
-</section>
-
-<section>
-  <div class="tip"><strong>💡 Tip of the day:</strong> <span id="tipText"></span></div>
-</section>
-
-<section id="courses">
-  <h2 class="title">Our Courses</h2>
-  <p class="lead">Search or filter, then choose a course to begin.</p>
-  <div class="tools">
-    <input id="search" type="search" placeholder="Search courses…" aria-label="Search courses">
-    <button class="chip on" data-cat="all" type="button">All</button>
-    <button class="chip" data-cat="tech" type="button">Tech</button>
-    <button class="chip" data-cat="school" type="button">School</button>
-    <button class="chip" data-cat="creative" type="button">Creative</button>
-  </div>
-  <div class="grid" id="grid"></div>
-  <p class="empty" id="empty">No courses match your search.</p>
-</section>
-
-<section id="lesson" aria-live="polite">
-  <h2 id="lTitle" class="title" style="text-align:left"></h2>
-  <div id="lBody"></div>
-  <div class="quiz">
-    <strong>Quick quiz</strong>
-    <p id="qText" style="margin-top:6px"></p>
-    <div id="qOpts"></div>
-    <p id="qMsg" style="margin-top:10px;font-weight:bold"></p>
-  </div>
-  <div class="actions">
-    <button class="main" id="doneBtn" type="button" style="margin-top:0">Mark as complete</button>
-    <button class="ghost" id="closeBtn" type="button">Back to courses</button>
-  </div>
-</section>
-
-<section class="about" id="about">
-  <h2 class="title">About Paccy Education Hub</h2>
-  <p>Paccy Education Hub is an educational platform created by Pacifique to share knowledge, support learners, and encourage lifelong learning through technology.</p>
-</section>
-
-<footer id="contact">
-  <p><strong>PACCY EDUCATION HUB</strong></p>
-  <p>Created by Pacifique</p>
-  <p>Education is the key to a brighter future.</p>
-  <p>© 2026 Paccy Education Hub. All rights reserved.</p>
-</footer>
-
-<script>
-/* ---------- Data ---------- */
-const COURSES = [
-  {id:"excel",cat:"tech",icon:"💻",name:"Advanced Excel",desc:"Formulas, functions, charts, data analysis, and PivotTables.",level:"Beginner to Advanced",
-   lesson:"<h3>Introduction to Microsoft Excel</h3><p>Excel is a spreadsheet program used to organize, calculate, and analyze information.</p><h3>Key concepts</h3><ul><li>Workbook: an Excel file.</li><li>Worksheet: a sheet inside a workbook.</li><li>Cell: where a row and column meet.</li><li>Formula: an expression used for calculations.</li></ul><p>Example: type <code>=SUM(A1:A5)</code> to add the values in cells A1 to A5.</p>",
-   q:{t:"Which formula adds cells A1 to A5?",o:["=ADD(A1:A5)","=SUM(A1:A5)","=TOTAL(A1,A5)"],a:1}},
-  {id:"web",cat:"tech",icon:"🌐",name:"Web Design",desc:"Learn HTML, CSS, and how to build your own website.",level:"Beginner",
-   lesson:"<h3>Introduction to HTML</h3><p>HTML defines the structure of a web page, for example <code>&lt;h1&gt;Hello World&lt;/h1&gt;</code>.</p><p>CSS controls appearance: colors, spacing, and fonts. JavaScript adds interactive behavior.</p>",
-   q:{t:"Which language controls the look of a web page?",o:["HTML","CSS","SQL"],a:1}},
-  {id:"digital",cat:"tech",icon:"📊",name:"Digital Skills",desc:"Computer basics, internet use, and digital productivity.",level:"Beginner",
-   lesson:"<h3>Computer Basics</h3><ul><li>Hardware: the physical parts of a computer.</li><li>Software: the programs a computer runs.</li><li>Keyboard: enters text and commands.</li><li>Browser: software used to visit websites.</li></ul>",
-   q:{t:"Which of these is software?",o:["Keyboard","Monitor","Browser"],a:2}},
-  {id:"english",cat:"school",icon:"📝",name:"English",desc:"Improve grammar, vocabulary, reading, and writing.",level:"Beginner to Intermediate",
-   lesson:"<h3>Parts of Speech</h3><ul><li>Noun: names a person, place, or thing.</li><li>Verb: expresses an action or state.</li><li>Adjective: describes a noun.</li><li>Adverb: modifies a verb, adjective, or another adverb.</li></ul><p>Exercise: find the verb in “Students learn every day.”</p>",
-   q:{t:"What is the verb in “Students learn every day”?",o:["Students","learn","day"],a:1}},
-  {id:"science",cat:"school",icon:"🔬",name:"Science",desc:"Chemistry, biology, physics, and scientific thinking.",level:"School Learners",
-   lesson:"<h3>Introduction to Science</h3><p>Science is the systematic study of the natural world through observation, evidence, and experimentation.</p><p>Scientists ask questions, form hypotheses, test ideas, and analyze results.</p>",
-   q:{t:"What is a hypothesis?",o:["A testable explanation","A final proof","A lab tool"],a:0}},
-  {id:"arts",cat:"creative",icon:"🎨",name:"Creative Arts",desc:"Patterns, drawing, music, design, and creativity.",level:"Beginner",
-   lesson:"<h3>Introduction to Patterns</h3><p>A pattern is a repeated arrangement of shapes, lines, colors, sounds, or other elements.</p><p>Examples: stripes, repeated circles, geometric designs, and rhythm in music.</p>",
-   q:{t:"Which is an example of a pattern?",o:["One red dot","Repeating stripes","A blank page"],a:1}}
-];
-const TIPS = [
-  "Study in short bursts of 25 minutes, then rest for 5.",
-  "Teach what you learned to a friend. It is the fastest way to remember it.",
-  "Type formulas yourself in Excel instead of copying them.",
-  "Read a few English sentences aloud every day.",
-  "Build a tiny web page each week to practice HTML and CSS."
-];
-
-/* ---------- Saved progress (safe storage) ---------- */
-let state = {done:{}, score:0, theme:null};
-try { const s = localStorage.getItem("paccy-state"); if (s) state = Object.assign(state, JSON.parse(s)); } catch(e) {}
-function save(){ try { localStorage.setItem("paccy-state", JSON.stringify(state)); } catch(e) {} }
-
-/* ---------- Helpers ---------- */
-const $ = id => document.getElementById(id);
-let cat = "all", current = null, answered = false;
-
-/* ---------- Theme ---------- */
-function applyTheme(t){
-  if (t) document.documentElement.setAttribute("data-theme", t);
-  const dark = t ? t === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
-  $("themeBtn").textContent = dark ? "☀️" : "🌙";
-}
-$("themeBtn").onclick = () => {
-  const isDark = document.documentElement.getAttribute("data-theme") === "dark" ||
-    (!document.documentElement.hasAttribute("data-theme") && matchMedia("(prefers-color-scheme: dark)").matches);
-  state.theme = isDark ? "light" : "dark"; applyTheme(state.theme); save();
-};
-
-/* ---------- Dashboard ---------- */
-function renderStats(){
-  const n = Object.keys(state.done).length, pct = Math.round(n / COURSES.length * 100);
-  $("sDone").textContent = n + "/" + COURSES.length;
-  $("sScore").textContent = state.score;
-  $("sPct").textContent = pct + "%";
-  $("barFill").style.width = pct + "%";
-}
-
-/* ---------- Course list ---------- */
-function renderCourses(){
-  const q = $("search").value.trim().toLowerCase();
-  const list = COURSES.filter(c => (cat === "all" || c.cat === cat) &&
-    (c.name + " " + c.desc).toLowerCase().includes(q));
-  $("grid").innerHTML = list.map(c => `
-    <div class="card">
-      ${state.done[c.id] ? '<span class="badge">✔ Done</span>' : ""}
-      <h3>${c.icon} ${c.name}</h3>
-      <p>${c.desc}</p>
-      <p class="level">Level: ${c.level}</p>
-      <button class="main" type="button" data-open="${c.id}">${state.done[c.id] ? "Review Course" : "Start Course"}</button>
-    </div>`).join("");
-  $("empty").style.display = list.length ? "none" : "block";
-}
-$("grid").onclick = e => { const id = e.target.dataset.open; if (id) openLesson(id); };
-$("search").oninput = renderCourses;
-document.querySelectorAll(".chip").forEach(b => b.onclick = () => {
-  document.querySelectorAll(".chip").forEach(x => x.classList.remove("on"));
-  b.classList.add("on"); cat = b.dataset.cat; renderCourses();
-});
-
-/* ---------- Lesson + quiz ---------- */
-function openLesson(id){
-  current = COURSES.find(c => c.id === id); answered = false;
-  $("lTitle").textContent = current.icon + " " + current.name + " – Lesson 1";
-  $("lBody").innerHTML = current.lesson;
-  $("qText").textContent = current.q.t;
-  $("qMsg").textContent = "";
-  $("qOpts").innerHTML = current.q.o.map((o,i) => `<button class="opt" type="button" data-i="${i}">${o}</button>`).join("");
-  $("doneBtn").textContent = state.done[id] ? "Completed ✔" : "Mark as complete";
-  $("lesson").style.display = "block";
-  $("lesson").scrollIntoView({behavior:"smooth"});
-}
-$("qOpts").onclick = e => {
-  const i = e.target.dataset.i; if (i === undefined || answered) return;
-  answered = true;
-  const ok = +i === current.q.a, btns = $("qOpts").children;
-  btns[current.q.a].classList.add("right");
-  if (!ok) btns[+i].classList.add("wrong");
-  $("qMsg").textContent = ok ? "🎉 Correct! +10 points" : "Not quite. The right answer is highlighted.";
-  if (ok){ state.score += 10; save(); renderStats(); }
-};
-$("doneBtn").onclick = () => {
-  if (!current) return;
-  state.done[current.id] = true; save(); renderStats(); renderCourses();
-  $("doneBtn").textContent = "Completed ✔";
-};
-$("closeBtn").onclick = () => {
-  $("lesson").style.display = "none";
-  $("courses").scrollIntoView({behavior:"smooth"});
-};
-
-/* ---------- Start ---------- */
-$("tipText").textContent = TIPS[new Date().getDate() % TIPS.length];
-applyTheme(state.theme);
-renderStats();
-renderCourses();
-</script>
-</body>
-</html>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Paccy Education Hub</title>
-<style>
-:root{
-  --bg:#f0f5ff;--surface:#fff;--text:#1d2433;--muted:#566077;
-  --navy:#071952;--teal:#088395;--accent:#35e0d0;--soft:#dff6ff;--ok:#1a9d5a;--bad:#d64545;
-  --shadow:0 4px 14px #00000018;color-scheme:light;
-  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
-}
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){--bg:#0b1220;--surface:#141d33;--text:#e8edf8;--muted:#9aa6c0;--navy:#0a1a4a;--soft:#12233f;--shadow:0 4px 14px #00000060;color-scheme:dark}
-}
-:root[data-theme="dark"]{--bg:#0b1220;--surface:#141d33;--text:#e8edf8;--muted:#9aa6c0;--navy:#0a1a4a;--soft:#12233f;--shadow:0 4px 14px #00000060;color-scheme:dark}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:70px}
-body{font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
-
-/* Header */
-#home{background:linear-gradient(135deg,#071952,#088395);color:#fff;display:flex;align-items:center;gap:40px;padding:50px 60px}
-.avatar{position:relative;overflow:hidden;width:150px;height:150px;flex:none;border-radius:50%;border:4px solid #fff;background:#0b2a6b;display:grid;place-items:center;font-size:64px;font-weight:bold;box-shadow:0 6px 18px #00000050}
-.avatar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top}
-.header-text{flex:1;text-align:center}
-.header-text h1{font-size:44px;letter-spacing:2px;margin-bottom:10px}
-.header-text p{font-size:19px;margin:6px 0}
-.creator{font-style:italic;margin-top:16px}
-
-/* Nav */
-nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--navy);display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:6px;padding:10px}
-nav a{color:#fff;text-decoration:none;font-weight:bold;padding:8px 14px;border-radius:6px}
-nav a:hover{color:var(--accent)}
-.icon-btn{background:transparent;border:1px solid #ffffff55;color:#fff;border-radius:6px;padding:7px 12px;cursor:pointer;font-size:15px}
-body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--navy);z-index:30}
-
-/* Sections */
-section{max-width:1100px;margin:auto;padding:36px 20px}
-h2.title{color:var(--navy);font-size:28px;text-align:center;margin-bottom:10px}
-:root[data-theme="dark"] h2.title{color:var(--accent)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) h2.title{color:var(--accent)}}
-.lead{text-align:center;max-width:720px;margin:0 auto 20px;color:var(--muted)}
-
-/* Progress dashboard */
-.dash{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px}
-.stat{background:var(--surface);border-radius:12px;padding:18px;text-align:center;box-shadow:var(--shadow)}
-.stat b{display:block;font-size:30px;color:var(--teal)}
-.bar{height:10px;background:var(--soft);border-radius:99px;overflow:hidden;margin-top:14px}
-.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--teal),var(--accent));transition:width .5s}
-
-/* Tools */
-.tools{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:20px}
-.tools input{flex:1 1 240px;max-width:380px;padding:11px 14px;border-radius:8px;border:1px solid var(--muted);background:var(--surface);color:var(--text);font-size:16px}
-.chip{border:1px solid var(--teal);background:var(--surface);color:var(--teal);padding:9px 14px;border-radius:99px;cursor:pointer;font-weight:bold}
-.chip.on{background:var(--teal);color:#fff}
-
-/* Cards */
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
-.card{background:var(--surface);border-radius:12px;padding:22px;box-shadow:var(--shadow);border-top:5px solid var(--teal);display:flex;flex-direction:column;gap:8px;position:relative}
-.card h3{color:var(--teal)}
-.level{font-size:14px;font-weight:bold;color:var(--muted)}
-.badge{position:absolute;top:10px;right:12px;background:var(--ok);color:#fff;font-size:12px;padding:2px 9px;border-radius:99px}
-button.main{margin-top:auto;background:var(--teal);color:#fff;border:0;border-radius:6px;padding:11px 16px;cursor:pointer;font-size:15px}
-button.main:hover{background:var(--navy)}
-button.ghost{background:transparent;color:var(--teal);border:1px solid var(--teal);border-radius:6px;padding:10px 16px;cursor:pointer}
-.empty{text-align:center;color:var(--muted);padding:20px;display:none}
-
-/* Lesson panel */
-#lesson{display:none;background:var(--surface);border-radius:14px;box-shadow:var(--shadow);margin:10px auto 30px;max-width:850px}
-#lesson h3{margin:14px 0 6px;color:var(--teal)}
-#lesson ul{margin-left:22px}
-.quiz{margin-top:22px;padding:16px;background:var(--soft);border-radius:10px}
-.opt{display:block;width:100%;text-align:left;margin-top:8px;padding:10px 12px;border-radius:8px;border:1px solid var(--muted);background:var(--surface);color:var(--text);cursor:pointer;font-size:15px}
-.opt.right{border-color:var(--ok);background:#1a9d5a30}
-.opt.wrong{border-color:var(--bad);background:#d6454530}
-.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
-
-/* Daily tip */
-.tip{background:var(--soft);border-left:5px solid var(--teal);border-radius:10px;padding:18px;max-width:760px;margin:auto}
-
-.about{background:var(--soft);text-align:center;max-width:none}
-.about p{max-width:720px;margin:auto}
-footer{background:var(--navy);color:#fff;text-align:center;padding:22px;line-height:1.8}
-
-@media (max-width:700px){
-  #home{flex-direction:column;padding:30px 20px;gap:20px}
-  .header-text h1{font-size:30px}
-}
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -404,7 +32,7 @@ footer{background:var(--navy);color:#fff;text-align:center;padding:22px;line-hei
 
 <section id="progress">
   <h2 class="title">Your Learning Journey</h2>
-  <p class="lead">Finish lessons and pass the quick quizzes to earn badges. Your progress is saved on this device.</p>
+  <p class="lead">Finish courses and pass the quizzes to earn badges. Progress is saved on this device.</p>
   <div class="dash">
     <div class="stat"><b id="sDone">0</b>Courses completed</div>
     <div class="stat"><b id="sScore">0</b>Quiz points</div>
@@ -425,6 +53,7 @@ footer{background:var(--navy);color:#fff;text-align:center;padding:22px;line-hei
     <button class="chip" data-cat="tech" type="button">Tech</button>
     <button class="chip" data-cat="school" type="button">School</button>
     <button class="chip" data-cat="creative" type="button">Creative</button>
+    <button class="chip" data-cat="trades" type="button">Trades</button>
   </div>
   <div class="grid" id="grid"></div>
   <p class="empty" id="empty">No courses match your search.</p>
@@ -432,15 +61,22 @@ footer{background:var(--navy);color:#fff;text-align:center;padding:22px;line-hei
 
 <section id="lesson" aria-live="polite">
   <h2 id="lTitle" class="title" style="text-align:left"></h2>
+  <p id="pgInfo" class="pginfo"></p>
   <div id="lBody"></div>
-  <div class="quiz">
-    <strong>Quick quiz</strong>
+  <div class="pager">
+    <button class="ghost" id="prevBtn" type="button">← Previous</button>
+    <button class="main" id="nextBtn" type="button" style="margin-top:0">Next →</button>
+  </div>
+  <div class="quiz" id="quiz">
+    <strong>Final quiz</strong>
     <p id="qText" style="margin-top:6px"></p>
     <div id="qOpts"></div>
     <p id="qMsg" style="margin-top:10px;font-weight:bold"></p>
+    <div class="actions">
+      <button class="main" id="doneBtn" type="button" style="margin-top:0">Mark as complete</button>
+    </div>
   </div>
   <div class="actions">
-    <button class="main" id="doneBtn" type="button" style="margin-top:0">Mark as complete</button>
     <button class="ghost" id="closeBtn" type="button">Back to courses</button>
   </div>
 </section>
@@ -457,44 +93,202 @@ footer{background:var(--navy);color:#fff;text-align:center;padding:22px;line-hei
   <p>© 2026 Paccy Education Hub. All rights reserved.</p>
 </footer>
 
-<script>
-/* ---------- Data ---------- */
-const COURSES = [
-  {id:"excel",cat:"tech",icon:"💻",name:"Advanced Excel",desc:"Formulas, functions, charts, data analysis, and PivotTables.",level:"Beginner to Advanced",
-   lesson:"<h3>Introduction to Microsoft Excel</h3><p>Excel is a spreadsheet program used to organize, calculate, and analyze information.</p><h3>Key concepts</h3><ul><li>Workbook: an Excel file.</li><li>Worksheet: a sheet inside a workbook.</li><li>Cell: where a row and column meet.</li><li>Formula: an expression used for calculations.</li></ul><p>Example: type <code>=SUM(A1:A5)</code> to add the values in cells A1 to A5.</p>",
-   q:{t:"Which formula adds cells A1 to A5?",o:["=ADD(A1:A5)","=SUM(A1:A5)","=TOTAL(A1,A5)"],a:1}},
-  {id:"web",cat:"tech",icon:"🌐",name:"Web Design",desc:"Learn HTML, CSS, and how to build your own website.",level:"Beginner",
-   lesson:"<h3>Introduction to HTML</h3><p>HTML defines the structure of a web page, for example <code>&lt;h1&gt;Hello World&lt;/h1&gt;</code>.</p><p>CSS controls appearance: colors, spacing, and fonts. JavaScript adds interactive behavior.</p>",
-   q:{t:"Which language controls the look of a web page?",o:["HTML","CSS","SQL"],a:1}},
-  {id:"digital",cat:"tech",icon:"📊",name:"Digital Skills",desc:"Computer basics, internet use, and digital productivity.",level:"Beginner",
-   lesson:"<h3>Computer Basics</h3><ul><li>Hardware: the physical parts of a computer.</li><li>Software: the programs a computer runs.</li><li>Keyboard: enters text and commands.</li><li>Browser: software used to visit websites.</li></ul>",
-   q:{t:"Which of these is software?",o:["Keyboard","Monitor","Browser"],a:2}},
-  {id:"english",cat:"school",icon:"📝",name:"English",desc:"Improve grammar, vocabulary, reading, and writing.",level:"Beginner to Intermediate",
-   lesson:"<h3>Parts of Speech</h3><ul><li>Noun: names a person, place, or thing.</li><li>Verb: expresses an action or state.</li><li>Adjective: describes a noun.</li><li>Adverb: modifies a verb, adjective, or another adverb.</li></ul><p>Exercise: find the verb in “Students learn every day.”</p>",
-   q:{t:"What is the verb in “Students learn every day”?",o:["Students","learn","day"],a:1}},
-  {id:"science",cat:"school",icon:"🔬",name:"Science",desc:"Chemistry, biology, physics, and scientific thinking.",level:"School Learners",
-   lesson:"<h3>Introduction to Science</h3><p>Science is the systematic study of the natural world through observation, evidence, and experimentation.</p><p>Scientists ask questions, form hypotheses, test ideas, and analyze results.</p>",
-   q:{t:"What is a hypothesis?",o:["A testable explanation","A final proof","A lab tool"],a:0}},
-  {id:"arts",cat:"creative",icon:"🎨",name:"Creative Arts",desc:"Patterns, drawing, music, design, and creativity.",level:"Beginner",
-   lesson:"<h3>Introduction to Patterns</h3><p>A pattern is a repeated arrangement of shapes, lines, colors, sounds, or other elements.</p><p>Examples: stripes, repeated circles, geometric designs, and rhythm in music.</p>",
-   q:{t:"Which is an example of a pattern?",o:["One red dot","Repeating stripes","A blank page"],a:1}}
+<script src="courses.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
+:root{
+  --bg:#f0f5ff;--surface:#fff;--text:#1d2433;--muted:#566077;
+  --navy:#071952;--teal:#088395;--accent:#35e0d0;--soft:#dff6ff;--ok:#1a9d5a;--bad:#d64545;
+  --shadow:0 4px 14px #00000018;color-scheme:light;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--bg:#0b1220;--surface:#141d33;--text:#e8edf8;--muted:#9aa6c0;--navy:#0a1a4a;--soft:#12233f;--shadow:0 4px 14px #00000060;color-scheme:dark}
+}
+:root[data-theme="dark"]{--bg:#0b1220;--surface:#141d33;--text:#e8edf8;--muted:#9aa6c0;--navy:#0a1a4a;--soft:#12233f;--shadow:0 4px 14px #00000060;color-scheme:dark}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+
+/* Header */
+#home{background:linear-gradient(135deg,#071952,#088395);color:#fff;display:flex;align-items:center;gap:40px;padding:50px 60px}
+.avatar{position:relative;overflow:hidden;width:150px;height:150px;flex:none;border-radius:50%;border:4px solid #fff;background:#0b2a6b;display:grid;place-items:center;font-size:64px;font-weight:bold;box-shadow:0 6px 18px #00000050}
+.avatar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top}
+.header-text{flex:1;text-align:center}
+.header-text h1{font-size:44px;letter-spacing:2px;margin-bottom:10px}
+.header-text p{font-size:19px;margin:6px 0}
+.creator{font-style:italic;margin-top:16px}
+
+/* Navigation */
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--navy);display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:6px;padding:10px}
+nav a{color:#fff;text-decoration:none;font-weight:bold;padding:8px 14px;border-radius:6px}
+nav a:hover{color:var(--accent)}
+.icon-btn{background:transparent;border:1px solid #ffffff55;color:#fff;border-radius:6px;padding:7px 12px;cursor:pointer;font-size:15px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--navy);z-index:30}
+
+/* Sections */
+section{max-width:1100px;margin:auto;padding:36px 20px}
+h2.title{color:var(--navy);font-size:28px;text-align:center;margin-bottom:10px}
+:root[data-theme="dark"] h2.title{color:var(--accent)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) h2.title{color:var(--accent)}}
+.lead{text-align:center;max-width:720px;margin:0 auto 20px;color:var(--muted)}
+
+/* Dashboard */
+.dash{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px}
+.stat{background:var(--surface);border-radius:12px;padding:18px;text-align:center;box-shadow:var(--shadow)}
+.stat b{display:block;font-size:30px;color:var(--teal)}
+.bar{height:10px;background:var(--soft);border-radius:99px;overflow:hidden;margin-top:14px}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--teal),var(--accent));transition:width .5s}
+
+/* Search and filters */
+.tools{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:20px}
+.tools input{flex:1 1 240px;max-width:380px;padding:11px 14px;border-radius:8px;border:1px solid var(--muted);background:var(--surface);color:var(--text);font-size:16px}
+.chip{border:1px solid var(--teal);background:var(--surface);color:var(--teal);padding:9px 14px;border-radius:99px;cursor:pointer;font-weight:bold}
+.chip.on{background:var(--teal);color:#fff}
+
+/* Course cards */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.card{background:var(--surface);border-radius:12px;padding:22px;box-shadow:var(--shadow);border-top:5px solid var(--teal);display:flex;flex-direction:column;gap:8px;position:relative}
+.card h3{color:var(--teal)}
+.level{font-size:14px;font-weight:bold;color:var(--muted)}
+.badge{position:absolute;top:10px;right:12px;background:var(--ok);color:#fff;font-size:12px;padding:2px 9px;border-radius:99px}
+button.main{margin-top:auto;background:var(--teal);color:#fff;border:0;border-radius:6px;padding:11px 16px;cursor:pointer;font-size:15px}
+button.main:hover{background:var(--navy)}
+button.ghost{background:transparent;color:var(--teal);border:1px solid var(--teal);border-radius:6px;padding:10px 16px;cursor:pointer}
+button:disabled{opacity:.4;cursor:default}
+.empty{text-align:center;color:var(--muted);padding:20px;display:none}
+
+/* Lesson reader */
+#lesson{display:none;background:var(--surface);border-radius:14px;box-shadow:var(--shadow);margin:10px auto 30px;max-width:850px}
+.pginfo{color:var(--muted);font-weight:bold;margin-bottom:8px}
+#lBody p{margin:8px 0}
+#lBody ul{margin:8px 0 8px 22px}
+.pager{display:flex;justify-content:space-between;gap:10px;margin-top:18px}
+.quiz{display:none;margin-top:22px;padding:16px;background:var(--soft);border-radius:10px}
+.opt{display:block;width:100%;text-align:left;margin-top:8px;padding:10px 12px;border-radius:8px;border:1px solid var(--muted);background:var(--surface);color:var(--text);cursor:pointer;font-size:15px}
+.opt.right{border-color:var(--ok);background:#1a9d5a30}
+.opt.wrong{border-color:var(--bad);background:#d6454530}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+
+/* Extras */
+.tip{background:var(--soft);border-left:5px solid var(--teal);border-radius:10px;padding:18px;max-width:760px;margin:auto}
+.about{background:var(--soft);text-align:center;max-width:none}
+.about p{max-width:720px;margin:auto}
+footer{background:var(--navy);color:#fff;text-align:center;padding:22px;line-height:1.8}
+
+@media (max-width:700px){
+  #home{flex-direction:column;padding:30px 20px;gap:20px}
+  .header-text h1{font-size:30px}
+}const COURSES = [
+/* ---------- Original courses ---------- */
+{id:"excel",cat:"tech",icon:"💻",name:"Advanced Excel",desc:"Formulas, functions, charts, data analysis, and PivotTables.",level:"Beginner to Advanced",
+ pages:[["Introduction to Microsoft Excel","Excel is a spreadsheet program used to organize, calculate, and analyze information.\n- Workbook: an Excel file.\n- Worksheet: a sheet inside a workbook.\n- Cell: where a row and column meet.\n- Formula: an expression used for calculations.\nExample: type =SUM(A1:A5) to add the values in cells A1 to A5."]],
+ q:{t:"Which formula adds cells A1 to A5?",o:["=ADD(A1:A5)","=SUM(A1:A5)","=TOTAL(A1,A5)"],a:1}},
+{id:"web",cat:"tech",icon:"🌐",name:"Web Design",desc:"Learn HTML, CSS, and how to build your own website.",level:"Beginner",
+ pages:[["Introduction to HTML","HTML defines the structure of a web page.\nCSS controls appearance: colors, spacing, and fonts.\nJavaScript adds interactive behavior."]],
+ q:{t:"Which language controls the look of a web page?",o:["HTML","CSS","SQL"],a:1}},
+{id:"digital",cat:"tech",icon:"📊",name:"Digital Skills",desc:"Computer basics, internet use, and digital productivity.",level:"Beginner",
+ pages:[["Computer Basics","- Hardware: the physical parts of a computer.\n- Software: the programs a computer runs.\n- Keyboard: enters text and commands.\n- Browser: software used to visit websites."]],
+ q:{t:"Which of these is software?",o:["Keyboard","Monitor","Browser"],a:2}},
+{id:"english",cat:"school",icon:"📝",name:"English",desc:"Improve grammar, vocabulary, reading, and writing.",level:"Beginner to Intermediate",
+ pages:[["Parts of Speech","- Noun: names a person, place, or thing.\n- Verb: expresses an action or state.\n- Adjective: describes a noun.\n- Adverb: modifies a verb, adjective, or another adverb.\nExercise: find the verb in “Students learn every day.”"]],
+ q:{t:"What is the verb in “Students learn every day”?",o:["Students","learn","day"],a:1}},
+{id:"science",cat:"school",icon:"🔬",name:"Science",desc:"Chemistry, biology, physics, and scientific thinking.",level:"School Learners",
+ pages:[["Introduction to Science","Science is the systematic study of the natural world through observation, evidence, and experimentation.\nScientists ask questions, form hypotheses, test ideas, and analyze results."]],
+ q:{t:"What is a hypothesis?",o:["A testable explanation","A final proof","A lab tool"],a:0}},
+{id:"arts",cat:"creative",icon:"🎨",name:"Creative Arts",desc:"Patterns, drawing, music, design, and creativity.",level:"Beginner",
+ pages:[["Introduction to Patterns","A pattern is a repeated arrangement of shapes, lines, colors, sounds, or other elements.\nExamples: stripes, repeated circles, geometric designs, and rhythm in music."]],
+ q:{t:"Which is an example of a pattern?",o:["One red dot","Repeating stripes","A blank page"],a:1}},
+
+/* ---------- Video Editing (10 pages) ---------- */
+{id:"video",cat:"creative",icon:"🎬",name:"Video Editing",desc:"Cut, arrange, and polish videos for YouTube, school, and business.",level:"Beginner to Intermediate",
+ pages:[
+ ["What is video editing?","Video editing is selecting, cutting, and arranging video clips, sound, and graphics to tell a clear story.\n- Used in films, news, ads, YouTube, and social media.\n- Editors work with raw footage called rushes.\n- Good editing is invisible: the viewer follows the story, not the cuts."],
+ ["Equipment and software","You can start with a phone or a basic computer.\n- Free software: DaVinci Resolve, CapCut, Kdenlive, Shotcut.\n- Professional software: Adobe Premiere Pro, Final Cut Pro.\n- Useful extras: headphones, an external hard drive, a mouse."],
+ ["Setting up a project","Before editing, prepare your project.\n- Create one folder each for video, audio, images, and exports.\n- Choose a resolution, usually 1080p (Full HD).\n- Choose a frame rate: 24 for cinema, 25 or 30 for most videos.\n- Save often and back up your files."],
+ ["The timeline and basic cuts","The timeline is where you arrange clips in order.\n- Import clips, then drag them onto the timeline.\n- Use the blade or split tool to cut.\n- Trim the start and end of each clip.\n- Delete mistakes, pauses, and repeated takes."],
+ ["Shots and storytelling","Different shots show different things.\n- Wide shot: shows the place.\n- Medium shot: shows a person to the waist.\n- Close-up: shows emotion and detail.\nA story needs a beginning, a middle, and an end. Mix shot types to keep viewers interested."],
+ ["Transitions and pacing","A transition joins two clips.\n- Cut: the most common and natural.\n- Fade or dissolve: shows time passing.\n- Avoid too many flashy effects.\nPacing is the speed of your video. Fast cuts feel exciting; longer shots feel calm."],
+ ["Working with audio","Viewers forgive poor video but not poor sound.\n- Keep voices clear and louder than the music.\n- Lower music volume under speech.\n- Remove background noise when possible.\n- Add sound effects carefully.\nAlways listen with headphones."],
+ ["Color correction and grading","Correction fixes problems; grading creates a style.\n- Adjust brightness, contrast, and white balance first.\n- Make skin tones look natural.\n- Use the same look across all clips.\n- Warm colors feel friendly; cool colors feel serious."],
+ ["Titles, subtitles, and effects","Text helps viewers understand.\n- Keep titles short and readable.\n- Use contrasting colors for text.\n- Add subtitles so people can watch without sound.\n- Use effects such as slow motion and speed-ups only when they help the story."],
+ ["Exporting and sharing","Export turns your project into a finished file.\n- Format: MP4 with the H.264 codec works almost everywhere.\n- YouTube: 1080p, 25 or 30 frames per second.\n- WhatsApp and phones: choose a smaller file size.\nWatch the final video fully before sharing. Always keep your project file."]
+ ],
+ q:{t:"Which export format works on almost every device?",o:["MP4 (H.264)","DOC","ZIP"],a:0}},
+
+/* ---------- Photography (10 pages) ---------- */
+{id:"photo",cat:"creative",icon:"📷",name:"Photography",desc:"Take better photos with any camera, from phones to DSLRs.",level:"Beginner",
+ pages:[
+ ["Introduction to photography","Photography means “drawing with light”. A photo is made when light reaches a sensor or film.\n- You can take great photos with a phone.\n- Skill matters more than expensive equipment.\n- Practice every day and review your results."],
+ ["Types of cameras","- Smartphone: always with you and easy to use.\n- Point-and-shoot: small with a built-in lens.\n- DSLR and mirrorless: interchangeable lenses and full manual control.\nChoose based on your budget and goals, and learn your camera’s buttons well."],
+ ["The exposure triangle","Exposure is how bright or dark a photo is. Three settings control it.\n- Aperture: how wide the lens opens.\n- Shutter speed: how long the sensor sees light.\n- ISO: how sensitive the sensor is.\nChanging one setting means you must balance the others."],
+ ["Aperture and depth of field","Aperture is measured in f-numbers.\n- Small f-number (f/1.8): lots of light and a blurry background. Good for portraits.\n- Large f-number (f/11): less light and everything sharp. Good for landscapes.\nBlurred background is called bokeh."],
+ ["Shutter speed and ISO","- Fast shutter (1/1000s) freezes movement, such as sports.\n- Slow shutter (1/15s) blurs movement and needs a tripod.\n- Low ISO (100) gives clean images in bright light.\n- High ISO (3200) works in the dark but adds noise (grain).\nA good rule: keep ISO as low as possible."],
+ ["Composition rules","Composition is how you arrange things in the frame.\n- Rule of thirds: place subjects on the grid lines.\n- Leading lines guide the eye.\n- Framing uses doors or branches around the subject.\n- Fill the frame and remove distractions.\n- Try different angles, high and low."],
+ ["Understanding light","Light is the most important ingredient.\n- Golden hour (just after sunrise and before sunset) gives soft, warm light.\n- Midday sun creates harsh shadows.\n- Cloudy days give soft, even light.\n- Use window light indoors.\nNever shoot with strong light behind your subject unless you want a silhouette."],
+ ["Portrait photography","Good portraits show personality.\n- Focus on the eyes.\n- Talk with your subject so they relax.\n- Use soft light and a clean background.\n- Shoot at eye level.\n- Always ask permission before photographing or sharing someone’s picture."],
+ ["Editing your photos","Editing improves a photo; it does not fix a bad one.\n- Free apps: Snapseed, Lightroom Mobile, GIMP.\n- Adjust exposure, contrast, and crop first.\n- Fix colors and sharpness gently.\n- Keep the original file safe.\nAvoid over-editing."],
+ ["Storing, sharing, and photography as a business","- Back up photos in two places, such as a hard drive and the cloud.\n- Name files clearly with date and event.\n- Build a portfolio of your best 20 photos.\n- Paid work: weddings, events, products, and school photos.\n- Learn photo rights: the photographer owns the work unless agreed otherwise."]
+ ],
+ q:{t:"Which setting gives a blurry background?",o:["A small f-number like f/1.8","A large f-number like f/16","A very low ISO"],a:0}},
+
+/* ---------- Building Construction (10 pages) ---------- */
+{id:"construction",cat:"trades",icon:"🏗️",name:"Building Construction",desc:"From site safety to foundations, walls, roofs, and finishing.",level:"Beginner",
+ pages:[
+ ["Introduction to construction","Construction is the process of building houses, roads, bridges, and other structures.\n- Main trades: mason, carpenter, plumber, electrician, welder, painter.\n- A project team includes the client, architect, engineer, and contractor.\n- Good construction is safe, strong, on time, and on budget."],
+ ["Site safety and PPE","Safety comes first on every site.\n- PPE: helmet, safety boots, gloves, goggles, reflective vest.\n- Keep the site clean and tools in order.\n- Use ladders and scaffolds correctly.\n- Never work at heights without protection.\nReport any danger immediately."],
+ ["Reading building plans","Plans are drawings that show how to build.\n- Site plan: where the building sits on the land.\n- Floor plan: rooms seen from above.\n- Elevations: the outside views.\n- Sections: a slice through the building.\nCheck the scale, for example 1:100, and always follow measurements written on the plan."],
+ ["Site preparation and setting out","Before building starts:\n- Clear bushes, rubbish, and topsoil.\n- Check the soil and drainage.\n- Set out the building with pegs and strings (profile boards).\n- Use the 3-4-5 triangle to make a perfect right angle.\nMistakes here are repeated in every later stage."],
+ ["Foundations","The foundation carries the weight of the whole building to the ground.\n- Strip foundations: for most houses on firm soil.\n- Pad foundations: under columns.\n- Raft foundations: for weak soil.\nThe trench must be dug to the right depth and width and kept free of water."],
+ ["Concrete and reinforcement","Concrete is made of cement, sand, aggregate (stones), and water.\n- A common mix for slabs is 1 cement : 2 sand : 4 aggregate.\n- Steel bars (rebar) give strength against pulling forces.\n- Compact the concrete to remove air.\n- Cure it by keeping it wet for at least 7 days."],
+ ["Walls and masonry","Walls divide space and carry loads.\n- Materials: bricks, concrete blocks, stone, timber.\n- Lay blocks in a staggered pattern called bond.\n- Check with a spirit level and plumb line.\n- Keep mortar joints about 10 mm thick.\n- Add a damp-proof course to stop moisture rising."],
+ ["Roofing","The roof protects against rain, sun, and wind.\n- Timber trusses or rafters form the frame.\n- Covering: iron sheets, clay tiles, or concrete tiles.\n- Slope allows rainwater to run off.\n- Fix gutters and downpipes to guide water away.\nUse fall protection when working on roofs."],
+ ["Finishing works","Finishing makes a building ready to use.\n- Plastering smooths walls.\n- Flooring: cement screed, tiles, or wood.\n- Plumbing brings clean water and removes waste.\n- Electrical work needs a qualified electrician.\n- Doors, windows, painting, and ceilings complete the job."],
+ ["Costing, quality, and careers","- Bill of Quantities (BoQ) lists materials and costs.\n- Add extra for waste and labor.\n- Inspect work at each stage before moving on.\n- Keep records and photos.\n- Careers: site supervisor, quantity surveyor, civil engineer, architect.\nLearn from experienced builders and keep updating your skills."]
+ ],
+ q:{t:"Why is concrete kept wet after pouring?",o:["To cure it and gain strength","To make it lighter","To change its color"],a:0}},
+
+/* ---------- Manufacturing (10 pages) ---------- */
+{id:"manufacturing",cat:"trades",icon:"🏭",name:"Manufacturing",desc:"How raw materials become products: processes, quality, and safety.",level:"Beginner",
+ pages:[
+ ["Introduction to manufacturing","Manufacturing turns raw materials into finished products using people, machines, and processes.\n- Examples: food, clothes, furniture, phones, cars.\n- It creates jobs and adds value to materials.\n- Rwanda’s industrial growth depends on skilled manufacturers."],
+ ["Types of production","- Job production: one special item at a time, such as a custom table.\n- Batch production: groups of items, such as bread.\n- Mass production: continuous production of large numbers, such as bottles.\nThe best type depends on demand, cost, and product design."],
+ ["Raw materials","Materials are chosen for strength, cost, and appearance.\n- Metals: steel, aluminium, copper.\n- Wood and wood products.\n- Plastics and rubber.\n- Textiles, glass, and ceramics.\nGood planning avoids waste and supports recycling."],
+ ["Main manufacturing processes","- Cutting: sawing, drilling, milling.\n- Casting: pouring melted material into a mould.\n- Forming: bending, rolling, forging.\n- Joining: welding, riveting, gluing, bolting.\n- Finishing: sanding, painting, polishing."],
+ ["Hand tools, power tools, and measuring","- Hand tools: hammer, saw, file, pliers.\n- Power tools: drill, grinder, lathe.\n- Measuring: tape, steel rule, vernier caliper.\nThe rule is “measure twice, cut once”. Keep tools clean, sharp, and stored properly."],
+ ["Workshop safety","Factories and workshops are dangerous without rules.\n- Wear PPE: goggles, gloves, ear protection, safety shoes.\n- Tie back long hair and avoid loose clothes near machines.\n- Know where the fire extinguisher and first aid kit are.\n- Switch off and lock out machines before repairs."],
+ ["Quality control","Quality means a product meets the required standard.\n- Inspect materials, during production, and at the end.\n- Use gauges and tests to check size and strength.\n- Record defects and find their cause.\n- Standards such as ISO help companies prove quality."],
+ ["Lean manufacturing and 5S","Lean means creating more value with less waste.\n- Types of waste: waiting, over-production, defects, extra movement.\n- 5S: Sort, Set in order, Shine, Standardize, Sustain.\nA tidy workplace is safer, faster, and cheaper to run."],
+ ["Automation, CNC, and 3D printing","- Automation: machines do repeating tasks.\n- CNC: computer-controlled machines cut parts very accurately.\n- 3D printing: builds objects layer by layer.\n- Robots handle heavy or dangerous work.\nHumans are still needed to design, program, repair, and supervise."],
+ ["Supply chain and careers","A supply chain moves materials from suppliers to factory to customers.\n- Plan stock so production never stops.\n- Packaging and transport protect the product.\n- Careers: machine operator, technician, quality inspector, production manager, engineer.\nStart a small workshop by choosing one product, testing it, then growing."]
+ ],
+ q:{t:"What does “5S” help organize?",o:["The workplace","The payroll","The weather"],a:0}}
 ];
+
 const TIPS = [
   "Study in short bursts of 25 minutes, then rest for 5.",
   "Teach what you learned to a friend. It is the fastest way to remember it.",
-  "Type formulas yourself in Excel instead of copying them.",
-  "Read a few English sentences aloud every day.",
-  "Build a tiny web page each week to practice HTML and CSS."
-];
-
-/* ---------- Saved progress (safe storage) ---------- */
+  "Practice a little every day instead of a lot once a week.",
+  "Take notes in your own words, not copied sentences.",
+  "Build something small each week to practice what you learn."
+];/* ---------- Setup ---------- */
+const $ = id => document.getElementById(id);
 let state = {done:{}, score:0, theme:null};
-try { const s = localStorage.getItem("paccy-state"); if (s) state = Object.assign(state, JSON.parse(s)); } catch(e) {}
+let cat = "all", cur = null, pg = 0, answered = false;
+
+try { Object.assign(state, JSON.parse(localStorage.getItem("paccy-state"))); } catch(e) {}
 function save(){ try { localStorage.setItem("paccy-state", JSON.stringify(state)); } catch(e) {} }
 
-/* ---------- Helpers ---------- */
-const $ = id => document.getElementById(id);
-let cat = "all", current = null, answered = false;
+/* Turns notes text into HTML: lines starting with "- " become bullets */
+function fmt(t){
+  let h = "", ul = false;
+  t.split("\n").forEach(l => {
+    if (l.startsWith("- ")) { if (!ul) { h += "<ul>"; ul = true; } h += "<li>" + l.slice(2) + "</li>"; }
+    else { if (ul) { h += "</ul>"; ul = false; } h += "<p>" + l + "</p>"; }
+  });
+  return h + (ul ? "</ul>" : "");
+}
 
 /* ---------- Theme ---------- */
 function applyTheme(t){
@@ -503,8 +297,9 @@ function applyTheme(t){
   $("themeBtn").textContent = dark ? "☀️" : "🌙";
 }
 $("themeBtn").onclick = () => {
-  const isDark = document.documentElement.getAttribute("data-theme") === "dark" ||
-    (!document.documentElement.hasAttribute("data-theme") && matchMedia("(prefers-color-scheme: dark)").matches);
+  const r = document.documentElement;
+  const isDark = r.getAttribute("data-theme") === "dark" ||
+    (!r.hasAttribute("data-theme") && matchMedia("(prefers-color-scheme: dark)").matches);
   state.theme = isDark ? "light" : "dark"; applyTheme(state.theme); save();
 };
 
@@ -527,7 +322,7 @@ function renderCourses(){
       ${state.done[c.id] ? '<span class="badge">✔ Done</span>' : ""}
       <h3>${c.icon} ${c.name}</h3>
       <p>${c.desc}</p>
-      <p class="level">Level: ${c.level}</p>
+      <p class="level">Level: ${c.level} · 📖 ${c.pages.length} page${c.pages.length > 1 ? "s" : ""}</p>
       <button class="main" type="button" data-open="${c.id}">${state.done[c.id] ? "Review Course" : "Start Course"}</button>
     </div>`).join("");
   $("empty").style.display = list.length ? "none" : "block";
@@ -539,30 +334,42 @@ document.querySelectorAll(".chip").forEach(b => b.onclick = () => {
   b.classList.add("on"); cat = b.dataset.cat; renderCourses();
 });
 
-/* ---------- Lesson + quiz ---------- */
+/* ---------- Notes reader ---------- */
 function openLesson(id){
-  current = COURSES.find(c => c.id === id); answered = false;
-  $("lTitle").textContent = current.icon + " " + current.name + " – Lesson 1";
-  $("lBody").innerHTML = current.lesson;
-  $("qText").textContent = current.q.t;
+  cur = COURSES.find(c => c.id === id); pg = 0; answered = false;
+  $("qText").textContent = cur.q.t;
   $("qMsg").textContent = "";
-  $("qOpts").innerHTML = current.q.o.map((o,i) => `<button class="opt" type="button" data-i="${i}">${o}</button>`).join("");
+  $("qOpts").innerHTML = cur.q.o.map((o,i) => `<button class="opt" type="button" data-i="${i}">${o}</button>`).join("");
   $("doneBtn").textContent = state.done[id] ? "Completed ✔" : "Mark as complete";
   $("lesson").style.display = "block";
-  $("lesson").scrollIntoView({behavior:"smooth"});
+  showPage(true);
 }
+function showPage(scroll){
+  const total = cur.pages.length, p = cur.pages[pg];
+  $("lTitle").textContent = cur.icon + " " + cur.name;
+  $("pgInfo").textContent = "Page " + (pg + 1) + " of " + total + ": " + p[0];
+  $("lBody").innerHTML = fmt(p[1]);
+  $("prevBtn").disabled = pg === 0;
+  $("nextBtn").style.display = pg === total - 1 ? "none" : "inline-block";
+  $("quiz").style.display = pg === total - 1 ? "block" : "none";
+  if (scroll) $("lesson").scrollIntoView({behavior:"smooth"});
+}
+$("prevBtn").onclick = () => { if (pg > 0) { pg--; showPage(true); } };
+$("nextBtn").onclick = () => { if (pg < cur.pages.length - 1) { pg++; showPage(true); } };
+
+/* ---------- Quiz ---------- */
 $("qOpts").onclick = e => {
   const i = e.target.dataset.i; if (i === undefined || answered) return;
   answered = true;
-  const ok = +i === current.q.a, btns = $("qOpts").children;
-  btns[current.q.a].classList.add("right");
+  const ok = +i === cur.q.a, btns = $("qOpts").children;
+  btns[cur.q.a].classList.add("right");
   if (!ok) btns[+i].classList.add("wrong");
   $("qMsg").textContent = ok ? "🎉 Correct! +10 points" : "Not quite. The right answer is highlighted.";
-  if (ok){ state.score += 10; save(); renderStats(); }
+  if (ok) { state.score += 10; save(); renderStats(); }
 };
 $("doneBtn").onclick = () => {
-  if (!current) return;
-  state.done[current.id] = true; save(); renderStats(); renderCourses();
+  if (!cur) return;
+  state.done[cur.id] = true; save(); renderStats(); renderCourses();
   $("doneBtn").textContent = "Completed ✔";
 };
 $("closeBtn").onclick = () => {
@@ -575,6 +382,3 @@ $("tipText").textContent = TIPS[new Date().getDate() % TIPS.length];
 applyTheme(state.theme);
 renderStats();
 renderCourses();
-</script>
-</body>
-</html>
